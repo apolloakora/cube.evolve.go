@@ -8,63 +8,63 @@ import (
 
 var movemap = map[string]map[int]int{
 
-	"xy": map[int]int{
+	"xy": {
 		0: 4,
 		4: 6,
 		6: 5,
 		5: 0,
 	},
 
-	"xz": map[int]int{
+	"xz": {
 		0: 5,
 		5: 6,
 		6: 4,
 		4: 0,
 	},
 
-	"xn": map[int]int{
+	"xn": {
 		0: 6,
 		4: 5,
 		6: 0,
 		5: 4,
 	},
 
-	"yx": map[int]int{
+	"yx": {
 		1: 3,
 		3: 6,
 		6: 5,
 		5: 1,
 	},
 
-	"yz": map[int]int{
+	"yz": {
 		1: 5,
 		5: 6,
 		6: 3,
 		3: 1,
 	},
 
-	"yn": map[int]int{
+	"yn": {
 		1: 6,
 		6: 1,
 		5: 3,
 		3: 5,
 	},
 
-	"zx": map[int]int{
+	"zx": {
 		2: 3,
 		3: 6,
 		6: 4,
 		4: 2,
 	},
 
-	"zy": map[int]int{
+	"zy": {
 		2: 4,
 		4: 6,
 		6: 3,
 		3: 2,
 	},
 
-	"zn": map[int]int{
+	"zn": {
 		2: 6,
 		6: 2,
 		4: 3,
@@ -74,63 +74,63 @@ var movemap = map[string]map[int]int{
 
 var translations = map[string]map[int]string{
 
-	"xy": map[int]string{
+	"xy": {
 		0: "zOnly",
 		4: "yOnly",
 		6: "zOnly",
 		5: "yOnly",
 	},
 
-	"xz": map[int]string{
+	"xz": {
 		0: "yOnly",
 		5: "zOnly",
 		6: "yOnly",
 		4: "zOnly",
 	},
 
-	"xn": map[int]string{
+	"xn": {
 		0: "y_z",
 		4: "y_z",
 		6: "y_z",
 		5: "y_z",
 	},
 
-	"yx": map[int]string{
+	"yx": {
 		1: "zOnly",
 		3: "xOnly",
 		6: "zOnly",
 		5: "xOnly",
 	},
 
-	"yz": map[int]string{
+	"yz": {
 		1: "xOnly",
 		5: "zOnly",
 		6: "xOnly",
 		3: "zOnly",
 	},
 
-	"yn": map[int]string{
+	"yn": {
 		1: "x_z",
 		6: "x_z",
 		5: "x_z",
 		3: "x_z",
 	},
 
-	"zx": map[int]string{
+	"zx": {
 		2: "yOnly",
 		3: "xOnly",
 		6: "yOnly",
 		4: "xOnly",
 	},
 
-	"zy": map[int]string{
+	"zy": {
 		2: "xOnly",
 		4: "yOnly",
 		6: "xOnly",
 		3: "yOnly",
 	},
 
-	"zn": map[int]string{
+	"zn": {
 		2: "x_y",
 		6: "x_y",
 		4: "x_y",
@@ -150,36 +150,36 @@ var operands = map[string]int{
 
 var resultActions = map[string]map[int]int{
 
-	"zOnly": map[int]int{
+	"zOnly": {
 		0: 1,
 		1: -1,
 	},
 
-	"yOnly": map[int]int{
+	"yOnly": {
 		0: 2,
 		2: -2,
 	},
 
-	"xOnly": map[int]int{
+	"xOnly": {
 		0: 4,
 		4: -4,
 	},
 
-	"x_y": map[int]int{
+	"x_y": {
 		0: 6,
 		2: 2,
 		4: -2,
 		6: -6,
 	},
 
-	"y_z": map[int]int{
+	"y_z": {
 		0: 3,
 		1: 1,
 		2: -1,
 		3: -3,
 	},
 
-	"x_z": map[int]int{
+	"x_z": {
 		0: 5,
 		1: 3,
 		4: -3,
@@ -189,14 +189,14 @@ var resultActions = map[string]map[int]int{
 
 var rotations = map[string][2]int{
 
-	"xy": [2]int{1, 2},
-	"xz": [2]int{1, 2},
+	"xy": {1, 2},
+	"xz": {1, 2},
 
-	"yx": [2]int{0, 2},
-	"yz": [2]int{0, 2},
+	"yx": {0, 2},
+	"yz": {0, 2},
 
-	"zx": [2]int{0, 1},
-	"zy": [2]int{0, 1},
+	"zx": {0, 1},
+	"zy": {0, 1},
 }
 
 var faceMap = map[int]string{
