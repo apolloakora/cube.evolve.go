@@ -252,6 +252,13 @@ var reverses = [3]string{
 	"zy",
 }
 
+func init() {
+	for i := range faces {
+		theSlice := cube[(i*4 + 1):(i*4 + 4)]
+		faces[i] = theSlice
+	}
+}
+
 func main() {
 
 	//	myMove := "xy"
@@ -260,10 +267,7 @@ func main() {
 	//	moveCube(cube, myMove)
 	//	cubeToString(cube, locators)
 
-	ourMap := NextState(cube)
-	for k, v := range ourMap {
-		fmt.Println("the move is", k, "the cube is", v)
-	}
+	NextState(cube)
 
 }
 
@@ -306,11 +310,6 @@ func translate(movemap map[string]map[int]int, cubeNumbers []int, move string, l
 
 func rotate(location []int, faces [][]int, move string) {
 
-	for i := range faces {
-		theSlice := cube[(i*4 + 1):(i*4 + 4)]
-		faces[i] = theSlice
-	}
-
 	rotation, ok := rotations[move]
 	if !ok {
 		return
@@ -335,6 +334,8 @@ func cubeToString(cube []int, location []int) string {
 
 func NextState(cube []int) map[string]string {
 
+	fmt.Println("the length of cube is", len(cube))
+
 	fmt.Println("original cube is          ", cubeToString(cube, locators))
 
 	nextMap := make(map[string]string)
@@ -348,6 +349,10 @@ func NextState(cube []int) map[string]string {
 			moveCube(cube, reverses[((index+1)/3)-1])
 		}
 
+	}
+
+	for k, v := range nextMap {
+		fmt.Println("the move is", k, "the cube is", v)
 	}
 
 	return nextMap
