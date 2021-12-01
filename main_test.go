@@ -4,8 +4,6 @@ import (
 	"testing"
 )
 
-var random = []int{3, 3, 3}
-
 var originalCube = []int{
 	5, 0, 2, 1,
 	5, 1, 2, 0,

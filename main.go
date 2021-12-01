@@ -205,18 +205,6 @@ var faceMap = map[int]string{
 	2: "z",
 }
 
-var checkMap = map[string]string{
-	"xy": "xz",
-	"xz": "xy",
-	"xn": "xn",
-	"yx": "yz",
-	"yz": "yx",
-	"yn": "yn",
-	"zx": "zy",
-	"zy": "zx",
-	"zn": "zn",
-}
-
 var builders = []struct {
 	move      string
 	resembles string
@@ -234,16 +222,6 @@ var builders = []struct {
 
 var locators = []int{0, 1, 2, 3, 4, 5, 6}
 
-var cube = []int{
-	5, 0, 2, 1,
-	5, 1, 2, 0,
-	5, 0, 2, 1,
-	0, 0, 2, 1,
-	0, 1, 2, 0,
-	4, 1, 0, 2,
-	1, 2, 1, 0,
-}
-
 var faces = make([][]int, 7)
 
 var reverses = [3]string{
@@ -252,12 +230,8 @@ var reverses = [3]string{
 	"zy",
 }
 
-func init() {
-	for i := range faces {
-		theSlice := cube[(i*4 + 1):(i*4 + 4)]
-		faces[i] = theSlice
-	}
-}
+//func init() {
+//}
 
 func main() {
 
@@ -267,6 +241,21 @@ func main() {
 	//	moveCube(cube, myMove)
 	//	cubeToString(cube, locators)
 
+	var cube = []int{
+		5, 0, 2, 1,
+		5, 1, 2, 0,
+		5, 0, 2, 1,
+		0, 0, 2, 1,
+		0, 1, 2, 0,
+		4, 1, 0, 2,
+		1, 2, 1, 0,
+	}
+
+	for i := range faces {
+		theSlice := cube[(i*4 + 1):(i*4 + 4)]
+		faces[i] = theSlice
+	}
+
 	NextState(cube)
 
 }
@@ -274,7 +263,7 @@ func main() {
 func moveCube(cube []int, move string) {
 
 	translate(movemap, cube, move, locators)
-	rotate(locators, faces, move)
+	rotate(locators, move)
 	swap(locators, movemap[move])
 
 }
@@ -308,7 +297,7 @@ func translate(movemap map[string]map[int]int, cubeNumbers []int, move string, l
 
 }
 
-func rotate(location []int, faces [][]int, move string) {
+func rotate(location []int, move string) {
 
 	rotation, ok := rotations[move]
 	if !ok {
