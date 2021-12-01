@@ -27,6 +27,12 @@ var testMap = map[string]string{
 }
 
 func TestNextState(t *testing.T) {
+
+	for i := range faces {
+		theSlice := originalCube[(i*4 + 1):(i*4 + 4)]
+		faces[i] = theSlice
+	}
+
 	newMap := NextState(originalCube)
 
 	if testMap["xy"] != newMap["xy"] {

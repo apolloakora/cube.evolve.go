@@ -306,6 +306,7 @@ func rotate(location []int, move string) {
 
 	for k := range movemap[move] {
 		xyz := faces[location[k]]
+		fmt.Println("length of xyz is", len(xyz), "k is", k, "location[k] is", location[k])
 		xyz[rotation[0]], xyz[rotation[1]] = xyz[rotation[1]], xyz[rotation[0]]
 	}
 }
