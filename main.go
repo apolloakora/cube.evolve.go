@@ -8,63 +8,63 @@ import (
 
 var movemap = map[string]map[int]int{
 
-	"xy": map[int]int{
+	"xy": {
 		0: 4,
 		4: 6,
 		6: 5,
 		5: 0,
 	},
 
-	"xz": map[int]int{
+	"xz": {
 		0: 5,
 		5: 6,
 		6: 4,
 		4: 0,
 	},
 
-	"xn": map[int]int{
+	"xn": {
 		0: 6,
 		4: 5,
 		6: 0,
 		5: 4,
 	},
 
-	"yx": map[int]int{
+	"yx": {
 		1: 3,
 		3: 6,
 		6: 5,
 		5: 1,
 	},
 
-	"yz": map[int]int{
+	"yz": {
 		1: 5,
 		5: 6,
 		6: 3,
 		3: 1,
 	},
 
-	"yn": map[int]int{
+	"yn": {
 		1: 6,
 		6: 1,
 		5: 3,
 		3: 5,
 	},
 
-	"zx": map[int]int{
+	"zx": {
 		2: 3,
 		3: 6,
 		6: 4,
 		4: 2,
 	},
 
-	"zy": map[int]int{
+	"zy": {
 		2: 4,
 		4: 6,
 		6: 3,
 		3: 2,
 	},
 
-	"zn": map[int]int{
+	"zn": {
 		2: 6,
 		6: 2,
 		4: 3,
@@ -74,63 +74,63 @@ var movemap = map[string]map[int]int{
 
 var translations = map[string]map[int]string{
 
-	"xy": map[int]string{
+	"xy": {
 		0: "zOnly",
 		4: "yOnly",
 		6: "zOnly",
 		5: "yOnly",
 	},
 
-	"xz": map[int]string{
+	"xz": {
 		0: "yOnly",
 		5: "zOnly",
 		6: "yOnly",
 		4: "zOnly",
 	},
 
-	"xn": map[int]string{
+	"xn": {
 		0: "y_z",
 		4: "y_z",
 		6: "y_z",
 		5: "y_z",
 	},
 
-	"yx": map[int]string{
+	"yx": {
 		1: "zOnly",
 		3: "xOnly",
 		6: "zOnly",
 		5: "xOnly",
 	},
 
-	"yz": map[int]string{
+	"yz": {
 		1: "xOnly",
 		5: "zOnly",
 		6: "xOnly",
 		3: "zOnly",
 	},
 
-	"yn": map[int]string{
+	"yn": {
 		1: "x_z",
 		6: "x_z",
 		5: "x_z",
 		3: "x_z",
 	},
 
-	"zx": map[int]string{
+	"zx": {
 		2: "yOnly",
 		3: "xOnly",
 		6: "yOnly",
 		4: "xOnly",
 	},
 
-	"zy": map[int]string{
+	"zy": {
 		2: "xOnly",
 		4: "yOnly",
 		6: "xOnly",
 		3: "yOnly",
 	},
 
-	"zn": map[int]string{
+	"zn": {
 		2: "x_y",
 		6: "x_y",
 		4: "x_y",
@@ -150,36 +150,36 @@ var operands = map[string]int{
 
 var resultActions = map[string]map[int]int{
 
-	"zOnly": map[int]int{
+	"zOnly": {
 		0: 1,
 		1: -1,
 	},
 
-	"yOnly": map[int]int{
+	"yOnly": {
 		0: 2,
 		2: -2,
 	},
 
-	"xOnly": map[int]int{
+	"xOnly": {
 		0: 4,
 		4: -4,
 	},
 
-	"x_y": map[int]int{
+	"x_y": {
 		0: 6,
 		2: 2,
 		4: -2,
 		6: -6,
 	},
 
-	"y_z": map[int]int{
+	"y_z": {
 		0: 3,
 		1: 1,
 		2: -1,
 		3: -3,
 	},
 
-	"x_z": map[int]int{
+	"x_z": {
 		0: 5,
 		1: 3,
 		4: -3,
@@ -189,32 +189,20 @@ var resultActions = map[string]map[int]int{
 
 var rotations = map[string][2]int{
 
-	"xy": [2]int{1, 2},
-	"xz": [2]int{1, 2},
+	"xy": {1, 2},
+	"xz": {1, 2},
 
-	"yx": [2]int{0, 2},
-	"yz": [2]int{0, 2},
+	"yx": {0, 2},
+	"yz": {0, 2},
 
-	"zx": [2]int{0, 1},
-	"zy": [2]int{0, 1},
+	"zx": {0, 1},
+	"zy": {0, 1},
 }
 
 var faceMap = map[int]string{
 	0: "x",
 	1: "y",
 	2: "z",
-}
-
-var checkMap = map[string]string{
-	"xy": "xz",
-	"xz": "xy",
-	"xn": "xn",
-	"yx": "yz",
-	"yz": "yx",
-	"yn": "yn",
-	"zx": "zy",
-	"zy": "zx",
-	"zn": "zn",
 }
 
 var builders = []struct {
@@ -234,16 +222,6 @@ var builders = []struct {
 
 var locators = []int{0, 1, 2, 3, 4, 5, 6}
 
-var cube = []int{
-	5, 0, 2, 1,
-	5, 1, 2, 0,
-	5, 0, 2, 1,
-	0, 0, 2, 1,
-	0, 1, 2, 0,
-	4, 1, 0, 2,
-	1, 2, 1, 0,
-}
-
 var faces = make([][]int, 7)
 
 var reverses = [3]string{
@@ -252,12 +230,10 @@ var reverses = [3]string{
 	"zy",
 }
 
-func main() {
+//func init() {
+//}
 
-	for i := range faces {
-		theSlice := cube[(i*4 + 1):(i*4 + 4)]
-		faces[i] = theSlice
-	}
+func main() {
 
 	//	myMove := "xy"
 
@@ -265,14 +241,29 @@ func main() {
 	//	moveCube(cube, myMove)
 	//	cubeToString(cube, locators)
 
-	nextState(cube)
+	var cube = []int{
+		5, 0, 2, 1,
+		5, 1, 2, 0,
+		5, 0, 2, 1,
+		0, 0, 2, 1,
+		0, 1, 2, 0,
+		4, 1, 0, 2,
+		1, 2, 1, 0,
+	}
+
+	for i := range faces {
+		theSlice := cube[(i*4 + 1):(i*4 + 4)]
+		faces[i] = theSlice
+	}
+
+	NextState(cube)
 
 }
 
 func moveCube(cube []int, move string) {
 
 	translate(movemap, cube, move, locators)
-	rotate(locators, faces, move)
+	rotate(locators, move)
 	swap(locators, movemap[move])
 
 }
@@ -306,7 +297,7 @@ func translate(movemap map[string]map[int]int, cubeNumbers []int, move string, l
 
 }
 
-func rotate(location []int, faces [][]int, move string) {
+func rotate(location []int, move string) {
 
 	rotation, ok := rotations[move]
 	if !ok {
@@ -317,7 +308,6 @@ func rotate(location []int, faces [][]int, move string) {
 		xyz := faces[location[k]]
 		xyz[rotation[0]], xyz[rotation[1]] = xyz[rotation[1]], xyz[rotation[0]]
 	}
-
 }
 
 func cubeToString(cube []int, location []int) string {
@@ -331,7 +321,9 @@ func cubeToString(cube []int, location []int) string {
 	return strings.Join(state, "")
 }
 
-func nextState(cube []int) {
+func NextState(cube []int) map[string]string {
+
+	fmt.Println("the length of cube is", len(cube))
 
 	fmt.Println("original cube is          ", cubeToString(cube, locators))
 
@@ -351,5 +343,7 @@ func nextState(cube []int) {
 	for k, v := range nextMap {
 		fmt.Println("the move is", k, "the cube is", v)
 	}
+
+	return nextMap
 
 }
