@@ -30,9 +30,20 @@ var testMap = map[string]string{
 
 func TestNextState(t *testing.T) {
 	newMap := NextState(originalCube)
-	for k := range testMap {
-		if testMap[k] != newMap[k] {
 
-		}
+	if testMap["xy"] != newMap["xy"] {
+		t.Error("testmap is", testMap["xy"])
+		t.Error("newmap is", newMap["xy"])
 	}
+
+	//	for k := range testMap {
+	//		if testMap[k] != newMap[k] {
+	//			t.Error("test map is", testMap[k])
+	//			t.Error("new map is", newMap[k])
+	//			t.Error("the map given by the function is incorrect")
+	//			for k, v := range newMap {
+	//				t.Error("the move is", k, "the cube is", v)
 }
+
+//		}
+//	}
