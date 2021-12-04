@@ -35,7 +35,7 @@ ___
 At any point in time, the orientation state of the cells will be **one** of 6 possibles values\
 which are xyz, xzy, yxz, yzx, zxy and zyx.
 
-###What do these orientations mean and how to make them?
+### What do these orientations mean and how to make them?
 
 Hold the cube so that the **front, left, top** piece has the order **red, green, white** respectively.\
 The three letters x, y or z will always be in the order of the x face, y face and then z face.
