@@ -46,24 +46,50 @@ If the colour on the x face is
 - blue/green - the letter will be y
 - white/yellow - the letter will be z
 
-**For the second letter**\
-If the colour on the y face is
-- orange/red - the letter will be x
-- blue/green - the letter will be y
-- white/yellow - the letter will be z
+**Repeat this again for the second and third letters, however instead you will look at the y and z faces respectively.**
 
-**For the third letter**\
-If the colour on the z face is
-- orange/red - the letter will be x
-- blue/green - the letter will be y
-- white/yellow - the letter will be z
+The three letters will represent where the faces on your piece are currently, compared to where they should be on a solved cube\
 
-The three letters will represent where the faces on your piece are currently, compared to where they should be on a solved cube
+Let's take an example - the **red, blue, yellow** piece in the **front, right, bottom** 
+
+|Orientation|Colour|Is on the|
+|-----------|------|---------|
+|x face|blue|front|
+|y face|yellow|right|
+|z face|red|bottom|
+
+If we apply the previous method onto this scenario, the orientation of our example piece will be yxz when you\
+put it on the **front, right, bottom**.
+
 
 ## How Rotation Changes Orientation
 ___
 
+Remember how there are only 6 possible orientations: xyz, xzy, yxz, zxy and zyx.\
+When a layer rotates, the orientation may change\
+Note that:
+- half turns do not change orientation
+- quarter turns swap values in simple ways.
 
+|Quarter Turn|Swaps Values|Example|Becomes|
+|------------|------------|-------|-------|
+|x move|y and z|zxy|zyx|
+|y move|x and z|yxz|zxy|
+|z move|x and y|xyz|yxz|
 
+Let's solve our example piece. Our piece has the orientation yzx - lets solve it in 2 moves
 
+|move|orientation|rotation|layer-rotated|sends-from| to |swaps|new-orientation|
+|----|-----------|--------|-------------|----------|----|-----|---------------|
+|1|yzx|z rotation|bottom|front, right, bottom|back, right, bottom|x and y|xyz|
+|2|zyx|y rotation|right|back, right, bottom|front, right, bottom|x and z|xyz|
+
+The piece is now orientated as xyz, which is the correct orientation. 
+
+You could travel the piece using 3 half turn rotations
+- First a z (bottom layer) half turn
+- then an x (back layer) half turn
+- then a y (right layer) half turn
+
+None of these half turns change the orientation of our cell. It stays as yxz for every turn.
 
