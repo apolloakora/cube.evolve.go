@@ -2,17 +2,11 @@ package cube
 
 type Move int
 
-const (
-	Xy Move = iota
-	Xz
-	Xn
-	Yx
-	Yz
-	Yn
-	Zx
-	Zy
-	Zn
-)
+type movement struct {
+	name      string
+	axis      Axis
+	isQuarter bool
+}
 
 // If this move rotated the X axis there are 6 possible
 // next moves that spin the Y and Z layers. Similarly if
@@ -26,23 +20,16 @@ func (m Move) String() string {
 	return moves[m].name
 }
 
-type moveInfo struct {
-	name      string
-	axis      Axis
-	isQuarter bool
-}
-
-var moves = [9]moveInfo{
-	{"xy", X, true},
-	{"xz", X, true},
-	{"xn", X, false},
-	{"yx", Y, true},
-	{"yz", Y, true},
-	{"yn", Y, false},
-
-	{"zx", Z, true},
-	{"zy", Z, true},
-	{"zn", Z, false},
+var moves = [9]movement{
+	{"Xy", X, true},
+	{"Xz", X, true},
+	{"Xn", X, false},
+	{"Yx", Y, true},
+	{"Yz", Y, true},
+	{"Yn", Y, false},
+	{"Zx", Z, true},
+	{"Zy", Z, true},
+	{"Zn", Z, false},
 }
 
 var nextMoveMap = map[Axis][6]Move{
@@ -50,3 +37,15 @@ var nextMoveMap = map[Axis][6]Move{
 	Y: [6]Move{Xy, Xz, Xn, Zx, Zy, Zn},
 	Z: [6]Move{Xy, Xz, Xn, Yx, Yz, Yn},
 }
+
+const (
+	Xy Move = iota
+	Xz
+	Xn
+	Yx
+	Yz
+	Yn
+	Zx
+	Zy
+	Zn
+)

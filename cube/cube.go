@@ -1,6 +1,7 @@
 package cube
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -32,6 +33,32 @@ func (c *Cube) orient(move Move) {
 		offset := c.indices[d]*4 + 1
 		c.state[offset+int(orientation[0])], c.state[offset+int(orientation[1])] = c.state[offset+int(orientation[1])], c.state[offset+int(orientation[0])]
 	}
+}
+
+func (c *Cube) relocate(move Move) {
+
+	c.shuffle(move, Xa, 0)
+
+	/*	dataCache := make(map[int]int)
+
+		for k, v := range swapIndices {
+			dataCache[v] = dataList[k]
+		}
+
+		for p, q := range dataCache {
+			dataList[p] = q
+		}
+	*/
+}
+
+func (c *Cube) shuffle(move Move, fromCell Cell, count int) {
+	toCell := displacements[move][fromCell]
+	if count < 4 {
+		count++
+		c.shuffle(move, toCell, count)
+	}
+	fmt.Println("count", count, "copying from cell", fromCell, "to cell", toCell)
+	c.indices[int(toCell)] = c.indices[int(fromCell)]
 }
 
 func (c Cube) String() string {

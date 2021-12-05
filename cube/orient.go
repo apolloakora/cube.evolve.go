@@ -2,12 +2,6 @@ package cube
 
 type Axis int
 
-const (
-	X Axis = iota
-	Y
-	Z
-)
-
 type face struct {
 	name string
 	axis Axis
@@ -24,3 +18,9 @@ var orientations = map[Axis][2]Axis{
 	Y: {X, Z},
 	Z: {X, Y},
 }
+
+const (
+	X Axis = iota
+	Y
+	Z
+)

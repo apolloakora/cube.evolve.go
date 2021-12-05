@@ -1,16 +1,7 @@
 package cube
 
 type Cell int
-
-const (
-	Xa Cell = iota
-	Ya
-	Za
-	Xd
-	Yd
-	Zd
-	Po
-)
+type Direction int
 
 // These displacements for each move are maps with
 // the keys that are the source index of the moving cell
@@ -27,20 +18,6 @@ var displacements = map[Move]map[Cell]Cell{
 	Zy: {Za: Yd, Yd: Po, Po: Xd, Xd: Za},
 	Zn: {Za: Po, Po: Za, Yd: Xd, Xd: Yd},
 }
-
-type Direction int
-
-const (
-	XAndY Direction = iota
-	XAndZ
-	XOnly
-	YAndX
-	YAndZ
-	YOnly
-	ZAndX
-	ZAndY
-	ZOnly
-)
 
 var directions = map[Move]map[Cell]Direction{
 
@@ -72,3 +49,25 @@ var resultActions = map[Direction]map[int]int{
 	YAndZ: {0: 3, 1: 1, 2: -1, 3: -3},
 	XAndZ: {0: 5, 1: 3, 4: -3, 5: -5},
 }
+
+const (
+	Xa Cell = iota
+	Ya
+	Za
+	Xd
+	Yd
+	Zd
+	Po
+)
+
+const (
+	XAndY Direction = iota
+	XAndZ
+	XOnly
+	YAndX
+	YAndZ
+	YOnly
+	ZAndX
+	ZAndY
+	ZOnly
+)
