@@ -230,9 +230,6 @@ var reverses = [3]string{
 	"zy",
 }
 
-//func init() {
-//}
-
 func main() {
 
 	//	myMove := "xy"

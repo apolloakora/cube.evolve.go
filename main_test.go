@@ -1,9 +1,5 @@
 package main
 
-import (
-	"testing"
-)
-
 var originalCube = []int{
 	5, 1, 2, 0,
 	5, 2, 0, 1,
@@ -18,8 +14,8 @@ var testMap = map[string]string{
 	"xy": "6yxz5zyx5yxz0yxz0zyx4yzx6zxy",
 }
 
+/*
 func TestNextState(t *testing.T) {
-
 	for i := range faces {
 		theSlice := originalCube[(i*4 + 1):(i*4 + 4)]
 		faces[i] = theSlice
@@ -41,3 +37,4 @@ func TestNextState(t *testing.T) {
 	//	}
 
 }
+*/
