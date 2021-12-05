@@ -22,6 +22,18 @@ func (c *Cube) displace(move Move) {
 
 }
 
+func (c *Cube) orient(move Move) {
+
+	if !moves[move].isQuarter {
+		return
+	}
+	orientation := orientations[moves[move].axis]
+	for d := range displacements[move] {
+		offset := c.indices[d]*4 + 1
+		c.state[offset+int(orientation[0])], c.state[offset+int(orientation[1])] = c.state[offset+int(orientation[1])], c.state[offset+int(orientation[0])]
+	}
+}
+
 func (c Cube) String() string {
 
 	var strState = make([]string, 28)
