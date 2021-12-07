@@ -238,8 +238,8 @@ func main() {
 	//	moveCube(cube, myMove)
 	//	cubeToString(cube, locators)
 
-	var cube = []int{
-		5, 0, 2, 1,
+
+
 		5, 1, 2, 0,
 		5, 0, 2, 1,
 		0, 0, 2, 1,
@@ -254,7 +254,6 @@ func main() {
 	}
 
 	NextState(cube)
-
 }
 
 func moveCube(cube []int, move string) {

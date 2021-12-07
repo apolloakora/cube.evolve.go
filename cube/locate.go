@@ -3,10 +3,10 @@ package cube
 type Cell int
 type Direction int
 
-// These displacements for each move are maps with
+// These relocations for each move are maps with
 // the keys that are the source index of the moving cell
 // and values that are the destination index.
-var displacements = map[Move]map[Cell]Cell{
+var relocations = map[Move]map[Cell]Cell{
 
 	Xy: {Xa: Yd, Yd: Po, Po: Zd, Zd: Xa},
 	Xz: {Xa: Zd, Zd: Po, Po: Yd, Yd: Xa},
