@@ -1,5 +1,10 @@
 package cube
 
+import (
+	"fmt"
+	"math/rand"
+)
+
 type Move int
 
 type movement struct {
@@ -11,6 +16,7 @@ type movement struct {
 // If this move rotated the X axis there are 6 possible
 // next moves that spin the Y and Z layers. Similarly if
 // this move spins the Y or indeed Z axes.
+
 func (m Move) NextMoves() [6]Move {
 	return nextMoveMap[moves[m].axis]
 }
@@ -18,6 +24,35 @@ func (m Move) NextMoves() [6]Move {
 // Return the string representation of a Move
 func (m Move) String() string {
 	return moves[m].name
+}
+
+func RandomMoves(listLength int) ([]Move, []Move) {
+	firstList := make([]Move, listLength)
+	oppList := make([]Move, listLength)
+
+	for i := range firstList {
+		listMove := Move(rand.Intn(8))
+		firstList[i] = listMove
+		fmt.Println("i is", i)
+		oppList[len(oppList)-1-i] = opposites[listMove]
+	}
+	fmt.Println("first list", firstList)
+	fmt.Println("opposite list", oppList)
+
+	return firstList, oppList
+
+}
+
+var opposites = map[Move]Move{
+	Xy: Xz,
+	Xz: Xy,
+	Xn: Xn,
+	Yx: Yz,
+	Yz: Yx,
+	Yn: Yn,
+	Zx: Zy,
+	Zy: Zx,
+	Zn: Zn,
 }
 
 var moves = [9]movement{
