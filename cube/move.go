@@ -26,9 +26,9 @@ func (m Move) String() string {
 	return moves[m].name
 }
 
-func RandomMoves(listLength int) ([]Move, []Move) {
-	firstList := make([]Move, listLength)
-	oppList := make([]Move, listLength)
+func RandomMoves(count int) ([]Move, []Move) {
+	firstList := make([]Move, count)
+	oppList := make([]Move, count)
 
 	for i := range firstList {
 		listMove := Move(rand.Intn(8))
