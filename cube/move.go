@@ -30,13 +30,19 @@ func RandomMoves(count int) ([]Move, []Move) {
 	firstList := make([]Move, count)
 	oppList := make([]Move, count)
 
-	for i := range firstList {
-		listMove := Move(rand.Intn(8))
+	firstRand := Move(rand.Intn(8))
+	firstList[0], oppList[count-1] = firstRand, opposites[firstRand]
+	moveAxis := moves[firstRand].axis
+
+	for i := 1; i < count; i++ {
+		nextArray := nextMoveMap[moveAxis]
+		listMove := nextArray[rand.Intn(5)]
 		firstList[i] = listMove
-		fmt.Println("i is", i)
-		oppList[len(oppList)-1-i] = opposites[listMove]
+		oppList[count-1-i] = opposites[listMove]
+		moveAxis = moves[listMove].axis
 	}
-	fmt.Println("first list", firstList)
+
+	fmt.Println("   first list", firstList)
 	fmt.Println("opposite list", oppList)
 
 	return firstList, oppList
@@ -68,9 +74,9 @@ var moves = [9]movement{
 }
 
 var nextMoveMap = map[Axis][6]Move{
-	X: [6]Move{Yx, Yz, Yn, Zx, Zy, Zn},
-	Y: [6]Move{Xy, Xz, Xn, Zx, Zy, Zn},
-	Z: [6]Move{Xy, Xz, Xn, Yx, Yz, Yn},
+	X: {Yx, Yz, Yn, Zx, Zy, Zn},
+	Y: {Xy, Xz, Xn, Zx, Zy, Zn},
+	Z: {Xy, Xz, Xn, Yx, Yz, Yn},
 }
 
 const (
