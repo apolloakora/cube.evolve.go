@@ -4,6 +4,27 @@ import (
 	"testing"
 )
 
+func TestMany(t *testing.T) {
+	c := Cube{
+		state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
+		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
+	}
+
+	forward, back := RandomMoves(100000000)
+	initial := c.String()
+	for _, v := range forward {
+		c.revolve(v)
+	}
+	for _, v := range back {
+		c.revolve(v)
+	}
+
+	if c.String() != initial {
+		t.Error("expected", initial, "but received", c.String())
+	}
+
+}
+
 func TestXRotations(t *testing.T) {
 
 	c1 := Cube{

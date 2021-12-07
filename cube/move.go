@@ -1,7 +1,6 @@
 package cube
 
 import (
-	"fmt"
 	"math/rand"
 	"time"
 )
@@ -44,9 +43,6 @@ func RandomMoves(count int) ([]Move, []Move) {
 		oppList[count-1-i] = opposites[listMove]
 		moveAxis = moves[listMove].axis
 	}
-
-	fmt.Println("   first list", firstList)
-	fmt.Println("opposite list", oppList)
 
 	return firstList, oppList
 
