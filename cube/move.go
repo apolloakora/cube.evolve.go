@@ -3,6 +3,7 @@ package cube
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 type Move int
@@ -27,6 +28,8 @@ func (m Move) String() string {
 }
 
 func RandomMoves(count int) ([]Move, []Move) {
+
+	rand.Seed(time.Now().UnixNano())
 	firstList := make([]Move, count)
 	oppList := make([]Move, count)
 
