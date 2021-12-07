@@ -230,6 +230,12 @@ var reverses = [3]string{
 	"zy",
 }
 
+var mySlice = []string{
+	"a", "d", "v", "e", "r", "b", "s",
+	//	"a", "t",
+	//	"a",
+}
+
 func main() {
 
 	//	myMove := "xy"
@@ -238,22 +244,50 @@ func main() {
 	//	moveCube(cube, myMove)
 	//	cubeToString(cube, locators)
 
+	/*	var cube = []int{
+			5, 0, 2, 1,
+			5, 1, 2, 0,
+			5, 0, 2, 1,
+			0, 0, 2, 1,
+			0, 1, 2, 0,
+			4, 1, 0, 2,
+			1, 2, 1, 0,
+		}
 
+		for i := range faces {
+			theSlice := cube[(i*4 + 1):(i*4 + 4)]
+			faces[i] = theSlice
+		}
 
-		5, 1, 2, 0,
-		5, 0, 2, 1,
-		0, 0, 2, 1,
-		0, 1, 2, 0,
-		4, 1, 0, 2,
-		1, 2, 1, 0,
+		NextState(cube)
+	*/
+	//	shuffle(mySlice)
+	reshuffle(mySlice, mySlice[0], 1)
+	fmt.Println(mySlice)
+
+}
+
+func shuffle(theWord []string) {
+	storeValue := theWord[1]
+	theWord[1] = theWord[0]
+
+	for i := 2; i < (len(theWord)); i++ {
+		storeValue, theWord[i] = theWord[i], storeValue
+		fmt.Println(theWord)
 	}
 
-	for i := range faces {
-		theSlice := cube[(i*4 + 1):(i*4 + 4)]
-		faces[i] = theSlice
-	}
+	theWord[0] = storeValue
 
-	NextState(cube)
+	fmt.Println(theWord)
+}
+
+func reshuffle(letters []string, toValue string, toIndex int) {
+	if toIndex != 0 {
+		fmt.Println("replacing to value", toValue, "into index", toIndex)
+		reshuffle(letters, letters[toIndex], (toIndex+1)%len(letters))
+	}
+	letters[toIndex] = toValue
+	fmt.Println("replacing to value", toValue, "into index", toIndex)
 }
 
 func moveCube(cube []int, move string) {
