@@ -1,16 +1,10 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	"github.com/gomodule/redigo/redis"
 	"strconv"
 	"strings"
 )
-
-func newPool() *redis.Pool {
-	return &redis.Pool{}
-}
 
 var movemap = map[string]map[int]int{
 
@@ -271,20 +265,6 @@ func main() {
 	reshuffle(mySlice, mySlice[0], 1)
 	fmt.Println(mySlice)
 
-}
-
-func shuffle(theWord []string) {
-	storeValue := theWord[1]
-	theWord[1] = theWord[0]
-
-	for i := 2; i < (len(theWord)); i++ {
-		storeValue, theWord[i] = theWord[i], storeValue
-		fmt.Println(theWord)
-	}
-
-	theWord[0] = storeValue
-
-	fmt.Println(theWord)
 }
 
 func reshuffle(letters []string, toValue string, toIndex int) {
