@@ -3,7 +3,7 @@ package cube
 import "testing"
 
 func TestOrient(t *testing.T) {
-
+	// @todo Change ALL cube strings to remove the 7 final characters denoting the xyz face orientations
 	var orientExpect = map[Move]string{
 		Xy: "0xzy0xyz0xyz0xyz0xzy0xzy0xzy",
 		Xz: "0xzy0xyz0xyz0xyz0xzy0xzy0xzy",

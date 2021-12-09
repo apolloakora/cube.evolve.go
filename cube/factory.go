@@ -5,6 +5,13 @@ import (
 	"time"
 )
 
+const minimumMoves, extraMoveRange = 234567, 123456
+
+// @todo write a FromString() function which takes a 21 long string and returns a correctly initialized cube.
+
+// @todo write a test function that hands over a string (of a cube that has been moved forward (from solved) by 10 moves)
+// @todo you then run the received cube through a hardcoded 10 reverse move and assert that the resultant string is equal to the one produced by a solved cube
+
 func SolvedCube() Cube {
 
 	cube := Cube{
@@ -26,5 +33,3 @@ func RandomCube() Cube {
 	return cube
 
 }
-
-const minimumMoves, extraMoveRange = 234567, 123456

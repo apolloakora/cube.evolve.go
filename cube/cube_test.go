@@ -4,6 +4,8 @@ import (
 	"testing"
 )
 
+// @todo this test fails - fix the bug
+
 func TestRevolutionsFromSolved(t *testing.T) {
 	c := SolvedCube()
 	forward, back := RandomMoves(234567)
@@ -18,6 +20,8 @@ func TestRevolutionsFromSolved(t *testing.T) {
 		t.Error("Expected solved state after thousands of moves", initial, "but got", c.String())
 	}
 }
+
+// @todo this test also fails - fix the bug
 
 func TestRevolutionsFromRandom(t *testing.T) {
 

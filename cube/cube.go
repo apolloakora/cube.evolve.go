@@ -66,7 +66,6 @@ func (c Cube) String() string {
 	for i, v := range c.indices {
 		strState[i*4] = strconv.Itoa(c.state[v*4])
 		for j := range axes {
-			//			strState[i*4+1+j] = faces[c.state[int(v)*4+1+j]].name
 			strState[i*4+1+j] = axes[c.state[int(v)*4+1+j]]
 		}
 	}
