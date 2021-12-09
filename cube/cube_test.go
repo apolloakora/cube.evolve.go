@@ -4,12 +4,9 @@ import (
 	"testing"
 )
 
-func TestMany(t *testing.T) {
-	c := Cube{
-		state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
-	}
+func TestMultipleMoves(t *testing.T) {
 
+	c := SolvedCube()
 	forward, back := RandomMoves(200000)
 	initial := c.String()
 	for _, v := range forward {
@@ -18,35 +15,18 @@ func TestMany(t *testing.T) {
 	for _, v := range back {
 		c.revolve(v)
 	}
-
 	if c.String() != initial {
 		t.Error("expected", initial, "but received", c.String())
 	}
-
 }
 
 func TestXRotations(t *testing.T) {
 
-	c1 := Cube{
-		state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
-	}
-	c2 := Cube{
-		state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
-	}
-	c3 := Cube{
-		state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
-	}
-	c4 := Cube{
-		state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
-	}
-	c5 := Cube{
-		state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
-	}
+	c1 := SolvedCube()
+	c2 := SolvedCube()
+	c3 := SolvedCube()
+	c4 := SolvedCube()
+	c5 := SolvedCube()
 	c1.revolve(Xy)
 	c1.revolve(Xy)
 	c2.revolve(Xz)
@@ -73,11 +53,8 @@ func TestXRotations(t *testing.T) {
 }
 
 func TestString(t *testing.T) {
-	c := Cube{
-		state:   [28]int{0, 0, 1, 2, 1, 0, 2, 1, 2, 1, 0, 2, 3, 1, 2, 0, 4, 2, 0, 1, 5, 2, 1, 0, 6, 0, 1, 2},
-		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
-	}
-	expectedState := "0xyz1xzy2yxz3yzx4zxy5zyx6xyz"
+	c := SolvedCube()
+	expectedState := "0xyz0xyz0xyz0xyz0xyz0xyz0xyz"
 	if c.String() == expectedState {
 		return
 	}

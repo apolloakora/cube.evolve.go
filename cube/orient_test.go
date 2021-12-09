@@ -17,10 +17,7 @@ func TestOrient(t *testing.T) {
 	}
 
 	for move, expectation := range orientExpect {
-		c := Cube{
-			state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-			indices: [7]int{0, 1, 2, 3, 4, 5, 6},
-		}
+		c := SolvedCube()
 		c.reorient(move)
 		if c.String() == expectation {
 			continue

@@ -7,16 +7,16 @@ func TestReorder(t *testing.T) {
 	// @todo we need to add the Y values
 	// @todo we need to add the Z values
 	// @todo we need to refactor to remove expansive integers
-	var orderExpect = map[Move][7]int{
-		Xy: [7]int{5, 1, 2, 3, 0, 6, 4},
-		Xz: [7]int{4, 1, 2, 3, 6, 0, 5},
-		Xn: [7]int{6, 1, 2, 3, 5, 4, 0},
+	var orderExpect = map[Move][7]Cell{
+		Xy: [7]Cell{Zd, Ya, Za, Xd, Xa, Po, Yd},
+		Xz: [7]Cell{Yd, Ya, Za, Xd, Po, Xa, Zd},
+		Xn: [7]Cell{Po, Ya, Za, Xd, Zd, Yd, Xa},
 	}
 
 	for move, expectedOrder := range orderExpect {
 		c := Cube{
 			state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-			indices: [7]int{0, 1, 2, 3, 4, 5, 6},
+			indices: [7]Cell{Xa, Ya, Za, Xd, Yd, Zd, Po},
 		}
 		c.reorder(move)
 		for i, v := range expectedOrder {

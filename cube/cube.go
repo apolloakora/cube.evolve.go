@@ -7,7 +7,7 @@ import (
 
 type Cube struct {
 	state   [28]int
-	indices [7]int
+	indices [7]Cell
 }
 
 func (c *Cube) revolve(move Move) {
@@ -35,7 +35,7 @@ func (c *Cube) reorient(move Move) {
 	}
 	orientation := orientations[moves[move].axis]
 	for d := range relocations[move] {
-		offset := c.indices[d]*4 + 1
+		offset := int(c.indices[d])*4 + 1
 		c.state[offset+int(orientation[0])], c.state[offset+int(orientation[1])] =
 			c.state[offset+int(orientation[1])], c.state[offset+int(orientation[0])]
 	}
@@ -52,15 +52,16 @@ func (c *Cube) reorder(move Move) {
 }
 
 func (c *Cube) replace(move Move) {
-	cellIndex := int(moves[move].axis)
-	c.reshuffle(move, relocations[move][Cell(cellIndex)], c.indices[cellIndex], cellIndex)
+	startIndex := int(moves[move].axis)
+	c.reshuffle(move, relocations[move][Cell(startIndex)], c.indices[startIndex], Cell(startIndex))
 }
 
-func (c *Cube) reshuffle(move Move, toCell Cell, toValue int, first int) {
-	if toCell != Cell(first) {
-		c.reshuffle(move, relocations[move][toCell], c.indices[int(toCell)], first)
+func (c *Cube) reshuffle(move Move, toCell Cell, toValue Cell, firstCell Cell) {
+	if toCell != firstCell {
+		c.reshuffle(move, relocations[move][toCell], c.indices[int(toCell)], firstCell)
 	}
-	c.indices[int(toCell)] = toValue
+	// @todo will the below work - surely it should be c.indices[int(toCell)]
+	c.indices[toCell] = toValue
 }
 
 func (c Cube) String() string {
@@ -69,7 +70,7 @@ func (c Cube) String() string {
 	for i, v := range c.indices {
 		strState[i*4] = strconv.Itoa(c.state[v*4])
 		for j := range faces {
-			strState[i*4+1+j] = faces[c.state[v*4+1+j]].name
+			strState[i*4+1+j] = faces[c.state[int(v)*4+1+j]].name
 		}
 	}
 	return strings.Join(strState, "")
