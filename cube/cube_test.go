@@ -7,7 +7,7 @@ import (
 func TestMultipleMoves(t *testing.T) {
 
 	c := SolvedCube()
-	forward, back := RandomMoves(200000)
+	forward, back := RandomMoves(234567)
 	initial := c.String()
 	for _, v := range forward {
 		c.revolve(v)

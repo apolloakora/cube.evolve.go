@@ -6,7 +6,6 @@ func TestReorder(t *testing.T) {
 
 	// @todo we need to add the Y values
 	// @todo we need to add the Z values
-	// @todo we need to refactor to remove expansive integers
 	var orderExpect = map[Move][7]Cell{
 		Xy: [7]Cell{Zd, Ya, Za, Xd, Xa, Po, Yd},
 		Xz: [7]Cell{Yd, Ya, Za, Xd, Po, Xa, Zd},
@@ -14,10 +13,7 @@ func TestReorder(t *testing.T) {
 	}
 
 	for move, expectedOrder := range orderExpect {
-		c := Cube{
-			state:   [28]int{0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0, 1, 2},
-			indices: [7]Cell{Xa, Ya, Za, Xd, Yd, Zd, Po},
-		}
+		c := SolvedCube()
 		c.reorder(move)
 		for i, v := range expectedOrder {
 			if c.indices[i] == v {

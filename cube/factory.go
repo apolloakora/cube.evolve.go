@@ -9,3 +9,16 @@ func SolvedCube() Cube {
 
 	return cube
 }
+
+func RandomCube() Cube {
+
+	cube := SolvedCube()
+
+	/*	turns, _ := RandomMoves(200000)
+		initial := c.String()
+		for _, v := range forward {
+			c.revolve(v)
+		}
+	*/
+	return cube
+}
