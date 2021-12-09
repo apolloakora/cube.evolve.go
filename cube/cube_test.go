@@ -5,7 +5,6 @@ import (
 )
 
 func TestRevolutionsFromSolved(t *testing.T) {
-
 	c := SolvedCube()
 	forward, back := RandomMoves(234567)
 	initial := c.String()

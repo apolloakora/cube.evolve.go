@@ -2,22 +2,13 @@ package cube
 
 type Axis int
 
-type face struct {
-	name string
-	axis Axis
-}
-
-var faces = [3]face{
-	{"x", X},
-	{"y", Y},
-	{"z", Z},
-}
-
-var orientations = map[Axis][2]Axis{
+var xyz = map[Axis][2]Axis{
 	X: {Y, Z},
 	Y: {X, Z},
 	Z: {X, Y},
 }
+
+var axes = [3]string{"x", "y", "z"}
 
 const (
 	X Axis = iota

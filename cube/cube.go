@@ -31,7 +31,7 @@ func (c *Cube) reorient(move Move) {
 	if !moves[move].isQuarter {
 		return
 	}
-	orientation := orientations[moves[move].axis]
+	orientation := xyz[moves[move].axis]
 	for d := range relocations[move] {
 		offset := int(c.indices[d])*4 + 1
 		c.state[offset+int(orientation[0])], c.state[offset+int(orientation[1])] =
@@ -65,8 +65,9 @@ func (c Cube) String() string {
 	var strState = make([]string, 28)
 	for i, v := range c.indices {
 		strState[i*4] = strconv.Itoa(c.state[v*4])
-		for j := range faces {
-			strState[i*4+1+j] = faces[c.state[int(v)*4+1+j]].name
+		for j := range axes {
+			//			strState[i*4+1+j] = faces[c.state[int(v)*4+1+j]].name
+			strState[i*4+1+j] = axes[c.state[int(v)*4+1+j]]
 		}
 	}
 	return strings.Join(strState, "")

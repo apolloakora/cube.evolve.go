@@ -1,0 +1,28 @@
+resource_types:
+
+    - name: cron-resource
+      type: docker-image
+      source:
+          repository: cftoolsmiths/cron-resource
+
+resources:
+
+    - name: twice-daily
+      type: cron-resource
+      source:
+          expression: ""
+          fire_immediately: true
+
+    - name: cube.evolve.go.repo
+      type: git
+      source:
+          uri: https://github.com/apolloakora/cube.evolve.go.git
+
+jobs:
+
+    - name: go-build
+      plan:
+          - get: twice-daily
+            trigger: true
+
+          - get: cube.evolve.go.repo
