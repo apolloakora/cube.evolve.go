@@ -1,5 +1,10 @@
 package cube
 
+import (
+	"math/rand"
+	"time"
+)
+
 func SolvedCube() Cube {
 
 	cube := Cube{
@@ -13,12 +18,13 @@ func SolvedCube() Cube {
 func RandomCube() Cube {
 
 	cube := SolvedCube()
-
-	/*	turns, _ := RandomMoves(200000)
-		initial := c.String()
-		for _, v := range forward {
-			c.revolve(v)
-		}
-	*/
+	rand.Seed(time.Now().UnixNano())
+	moveSequence, _ := RandomMoves(minimumMoves + rand.Intn(extraMoveRange))
+	for _, v := range moveSequence {
+		cube.revolve(v)
+	}
 	return cube
+
 }
+
+const minimumMoves, extraMoveRange = 234567, 123456

@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestMultipleMoves(t *testing.T) {
+func TestRevolutionsFromSolved(t *testing.T) {
 
 	c := SolvedCube()
 	forward, back := RandomMoves(234567)
@@ -16,10 +16,27 @@ func TestMultipleMoves(t *testing.T) {
 		c.revolve(v)
 	}
 	if c.String() != initial {
-		t.Error("expected", initial, "but received", c.String())
+		t.Error("Expected solved state after thousands of moves", initial, "but got", c.String())
 	}
 }
 
+func TestRevolutionsFromRandom(t *testing.T) {
+
+	c := RandomCube()
+	forward, back := RandomMoves(234567)
+	initial := c.String()
+	for _, v := range forward {
+		c.revolve(v)
+	}
+	for _, v := range back {
+		c.revolve(v)
+	}
+	if c.String() != initial {
+		t.Error("Expected starting state after thousands of moves", initial, "but got", c.String())
+	}
+}
+
+// @todo expand test to cover Y and Z scenarios
 func TestXRotations(t *testing.T) {
 
 	c1 := SolvedCube()
