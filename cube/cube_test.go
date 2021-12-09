@@ -10,7 +10,7 @@ func TestMany(t *testing.T) {
 		indices: [7]int{0, 1, 2, 3, 4, 5, 6},
 	}
 
-	forward, back := RandomMoves(100000000)
+	forward, back := RandomMoves(200000)
 	initial := c.String()
 	for _, v := range forward {
 		c.revolve(v)

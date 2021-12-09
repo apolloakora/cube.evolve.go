@@ -1,10 +1,16 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"github.com/gomodule/redigo/redis"
 	"strconv"
 	"strings"
 )
+
+func newPool() *redis.Pool {
+	return &redis.Pool{}
+}
 
 var movemap = map[string]map[int]int{
 
