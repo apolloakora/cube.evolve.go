@@ -35,18 +35,16 @@ func TestRevolutionsFromRandom(t *testing.T) {
 	}
 }
 
-// @todo expand test to cover Y and Z scenarios
-func TestXRotations(t *testing.T) {
+func TestRotations(t *testing.T) {
 
-	var indexArray = [3]int{0, 1, 2}
+	for i := range axes {
 
-	c1 := SolvedCube()
-	c2 := SolvedCube()
-	c3 := SolvedCube()
-	c4 := SolvedCube()
-	c5 := SolvedCube()
+		c1 := SolvedCube()
+		c2 := SolvedCube()
+		c3 := SolvedCube()
+		c4 := SolvedCube()
+		c5 := SolvedCube()
 
-	for i := range indexArray {
 		c1.revolve(Move(i * 3))
 		c1.revolve(Move(i * 3))
 		c2.revolve(Move(i*3 + 1))
