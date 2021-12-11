@@ -7,9 +7,9 @@ func TestReorder(t *testing.T) {
 	// @todo we need to add the Y values
 	// @todo we need to add the Z values
 	var orderExpect = map[Move][7]Cell{
-		Xy: [7]Cell{Zd, Ya, Za, Xd, Xa, Po, Yd},
-		Xz: [7]Cell{Yd, Ya, Za, Xd, Po, Xa, Zd},
-		Xn: [7]Cell{Po, Ya, Za, Xd, Zd, Yd, Xa},
+		Xy: {Zd, Ya, Za, Xd, Xa, Po, Yd},
+		Xz: {Yd, Ya, Za, Xd, Po, Xa, Zd},
+		Xn: {Po, Ya, Za, Xd, Zd, Yd, Xa},
 	}
 
 	for move, expectedOrder := range orderExpect {

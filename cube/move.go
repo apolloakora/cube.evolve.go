@@ -32,13 +32,13 @@ func RandomMoves(count int) ([]Move, []Move) {
 	firstList := make([]Move, count)
 	oppList := make([]Move, count)
 
-	firstRand := Move(rand.Intn(8))
+	firstRand := Move(rand.Intn(len(opposites)))
 	firstList[0], oppList[count-1] = firstRand, opposites[firstRand]
 	moveAxis := moves[firstRand].axis
 
 	for i := 1; i < count; i++ {
 		nextArray := nextMoveMap[moveAxis]
-		listMove := nextArray[rand.Intn(5)]
+		listMove := nextArray[rand.Intn(len(opposites)-3)]
 		firstList[i] = listMove
 		oppList[count-1-i] = opposites[listMove]
 		moveAxis = moves[listMove].axis

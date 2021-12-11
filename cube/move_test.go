@@ -1,6 +1,8 @@
 package cube
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestRandomMovesLength(t *testing.T) {
 	const quantity = 12345
