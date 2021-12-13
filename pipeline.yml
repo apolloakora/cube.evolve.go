@@ -7,10 +7,10 @@ resource_types:
 
 resources:
 
-    - name: twice-daily
+    - name: thrice-daily
       type: cron-resource
       source:
-          expression: ""
+          expression: "30 9,15,21 * * *"
           fire_immediately: true
 
     - name: cube.evolve.go.repo
@@ -22,7 +22,25 @@ jobs:
 
     - name: go-build
       plan:
-          - get: twice-daily
+          - get: thrice-daily
             trigger: true
 
           - get: cube.evolve.go.repo
+
+          - task: build-go-project
+            config:
+                platform: linux/arm64
+                image_resource:
+                    type: docker-image
+                    source:
+                        repository: ubuntu
+                        tag: 20.04
+                run:
+                    path: /bin/bash
+                    args:
+                        - -exc
+                        - |
+                          apt update
+                          dig +short myip.opendns.com @resolver1.opendns.com
+                          echo "hello ci/cd world"
+                          df -h
