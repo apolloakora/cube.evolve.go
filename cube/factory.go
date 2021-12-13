@@ -54,13 +54,13 @@ func FromString(State string) Cube {
 	fmt.Println(stringSlice)
 
 	for i, v := range stringSlice {
-		if i/3 == 1 {
-			intSlice = append(intSlice, 3-(intSlice[i-2]+intSlice[i-1]))
-		} else if i == 20 {
+		if (i%3 == 0 && i != 0) || i == 20 {
 			intSlice = append(intSlice, 3-(intSlice[i-2]+intSlice[i-1]))
 		}
+
 		intSlice = append(intSlice, fromStringMap[v])
 		fmt.Println(intSlice)
+
 	}
 
 	fmt.Println(intSlice)
