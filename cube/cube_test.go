@@ -4,6 +4,29 @@ import (
 	"testing"
 )
 
+func TestSolved(t *testing.T) {
+	c := SolvedCube()
+	if !c.Solved() {
+		t.Error("Expected solved cube", c, "to be solved but it was", c)
+	}
+
+	boomerang1 := [...]Move{Xy, Yx, Zx, Zy, Yz, Xz}
+	for _, v := range boomerang1 {
+		c.revolve(v)
+	}
+	if !c.Solved() {
+		t.Error("Expected a solved cube", c, "after this move sequence.", boomerang1)
+	}
+
+	boomerang2 := [...]Move{Xn, Yn, Zn, Zn, Yn, Xn}
+	for _, v := range boomerang2 {
+		c.revolve(v)
+	}
+	if !c.Solved() {
+		t.Error("Expected a solved cube", c, "after this move sequence.", boomerang2)
+	}
+}
+
 func TestRevolutionsFromSolved(t *testing.T) {
 	c := SolvedCube()
 	forward, back := RandomMoves(234567)
@@ -98,7 +121,7 @@ func TestRotations(t *testing.T) {
 
 func TestString(t *testing.T) {
 	c := SolvedCube()
-	expectedState := "0xyz0xyz0xyz0xyz0xyz0xyz0xyz"
+	expectedState := "0xy0xy0xy0xy0xy0xy0xy"
 	if c.String() == expectedState {
 		return
 	}
