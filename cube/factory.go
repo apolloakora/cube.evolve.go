@@ -1,6 +1,7 @@
 package cube
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -22,13 +23,47 @@ func SolvedCube() Cube {
 	return cube
 }
 
-func FromString(state string) Cube {
+var fromStringMap = map[string]int{
+	"0": 0,
+	"1": 1,
+	"2": 2,
+	"3": 3,
+	"4": 4,
+	"5": 5,
+	"6": 6,
+	"7": 7,
+	"x": 0,
+	"y": 1,
+	"z": 2,
+}
 
-	/*	for i, c := range state {
-			print(i, c)
+func FromString(State string) Cube {
+	//	intCube := Cube{
+	//		state: [28]int{},
+	//		indices: [7]Cell{Xa, Ya, Za, Xd, Yd, Zd, Po},
+	//	}
+
+	stringSlice := make([]string, 0)
+	intSlice := make([]int, 0)
+
+	chars := []rune(State)
+	for i := 0; i < len(chars); i++ {
+		char := string(chars[i])
+		stringSlice = append(stringSlice, char)
+	}
+	fmt.Println(stringSlice)
+
+	for i, v := range stringSlice {
+		if i/3 == 1 {
+			intSlice = append(intSlice, 3-(intSlice[i-2]+intSlice[i-1]))
+		} else if i == 20 {
+			intSlice = append(intSlice, 3-(intSlice[i-2]+intSlice[i-1]))
 		}
-	*/
+		intSlice = append(intSlice, fromStringMap[v])
+		fmt.Println(intSlice)
+	}
 
+	fmt.Println(intSlice)
 	return SolvedCube()
 }
 
