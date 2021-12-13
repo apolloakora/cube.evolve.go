@@ -4,6 +4,10 @@ import (
 	"testing"
 )
 
+func TestStringLoop(t *testing.T) {
+
+}
+
 func TestSolved(t *testing.T) {
 	c := SolvedCube()
 	if !c.Solved() {

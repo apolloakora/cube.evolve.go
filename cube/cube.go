@@ -63,7 +63,7 @@ func (c *Cube) reshuffle(move Move, toCell Cell, toValue Cell, firstCell Cell) {
 
 func (c Cube) Solved() bool {
 	for _, v := range c.indices {
-		if c.state[v*4] != 0 || c.state[v*4+1] != 0 || c.state[v*4+2] != 1 {
+		if c.state[v*4] != 0 || c.state[v*4+1] != 0 || c.state[v*4+2] != 1 || c.state[v*4+3] != 2 {
 			return false
 		}
 	}
