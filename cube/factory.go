@@ -22,6 +22,12 @@ func SolvedCube() Cube {
 	return cube
 }
 
+func FromString(cubeSring string) {
+	for i, c := range cubeSring {
+		print(i, c)
+	}
+}
+
 func RandomCube() Cube {
 
 	cube := SolvedCube()
