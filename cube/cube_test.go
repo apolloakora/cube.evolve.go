@@ -91,32 +91,6 @@ func TestRotations(t *testing.T) {
 			t.Error("Expected 3", Move(i*3+1), "rotations vs one", Move(i*3), "to match", c2, c5)
 		}
 	}
-	/*
-
-		c1.revolve(Xy)
-		c1.revolve(Xy)
-		c2.revolve(Xz)
-		c2.revolve(Xz)
-		c3.revolve(Xn)
-
-		if c1.String() != c2.String() {
-			t.Error("Expected Xy and Xz rotated twice to match", c1, c2)
-		}
-		if c1.String() != c3.String() {
-			t.Error("Expected Xy rotated twice vs Xn  to match", c1, c3)
-		}
-		c1.revolve(Xy)
-		c4.revolve(Xz)
-		if c1.String() != c4.String() {
-			t.Error("Expected Xy rotated 3 times vs Xz  to match", c1, c4)
-		}
-		c2.revolve(Xz)
-		c5.revolve(Xy)
-		if c2.String() != c5.String() {
-			t.Error("Expected 3 Xz rotations vs one Xy to match", c2, c5)
-		}
-	*/
-
 }
 
 func TestString(t *testing.T) {
