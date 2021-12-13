@@ -38,10 +38,10 @@ var fromStringMap = map[string]int{
 }
 
 func FromString(State string) Cube {
-	//	intCube := Cube{
-	//		state: [28]int{},
-	//		indices: [7]Cell{Xa, Ya, Za, Xd, Yd, Zd, Po},
-	//	}
+	intCube := Cube{
+		state:   [28]int{},
+		indices: [7]Cell{Xa, Ya, Za, Xd, Yd, Zd, Po},
+	}
 
 	stringSlice := make([]string, 0)
 	intSlice := make([]int, 0)
@@ -54,9 +54,11 @@ func FromString(State string) Cube {
 	fmt.Println(stringSlice)
 
 	for i, v := range stringSlice {
-		if (i%3 == 0 && i != 0) || i == 20 {
+		if i%3 == 0 && i != 0 {
 			fmt.Println("the index right now is", i)
-			intSlice = append(intSlice, 3-(intSlice[i-2]+intSlice[i-1]))
+			intSlice = append(intSlice, 3-(fromStringMap[stringSlice[i-2]]+fromStringMap[stringSlice[i-1]]))
+		} else if i == 20 {
+			intSlice = append(intSlice, 3-(fromStringMap[stringSlice[i-1]]+fromStringMap[stringSlice[i]]))
 		}
 
 		intSlice = append(intSlice, fromStringMap[v])
@@ -65,7 +67,12 @@ func FromString(State string) Cube {
 	}
 
 	fmt.Println(intSlice)
-	return SolvedCube()
+
+	for i, v := range intSlice {
+		intCube.state[i] = v
+	}
+	fmt.Println(intCube.state)
+	return intCube
 }
 
 func RandomCube() Cube {
