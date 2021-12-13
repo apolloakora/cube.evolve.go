@@ -2,16 +2,26 @@ package cube
 
 import "testing"
 
+func TestFromStringSimple(t *testing.T) {
+	cGreat := SolvedCube()
+	cMaybe := FromString(cGreat.String())
+	if !cMaybe.Solved() {
+		t.Error("Expected our maybe cube to be solved but it was", cMaybe)
+	}
+}
+
 func TestFromString(t *testing.T) {
 
-	endState := "1xz1zx7yx1xz2xz0xz4yx"
-	returnMoves := [...]Move{Xz, Yx, Zy, Yz, Xn}
-	myCube := FromString(endState)
-	for _, v := range returnMoves {
-		myCube.revolve(v)
+	forwards, backwards := RandomMoves(123456)
+	thisCube := SolvedCube()
+	for _, move := range forwards {
+		thisCube.revolve(move)
 	}
-
-	if !myCube.Solved() {
-		t.Error("Starting from state", endState, "and revolving with", returnMoves, "we expected a solved cube but it was", myCube)
+	thatCube := FromString(thisCube.String())
+	for _, move := range backwards {
+		thatCube.revolve(move)
+	}
+	if !thatCube.Solved() {
+		t.Error("Expected thatCube to be solved but it was", thatCube)
 	}
 }

@@ -1,7 +1,6 @@
 package cube
 
 import (
-	"fmt"
 	"math/rand"
 	"time"
 )
@@ -37,7 +36,26 @@ var fromStringMap = map[string]int{
 	"z": 2,
 }
 
-func FromString(State string) Cube {
+func FromString(stringState string) Cube {
+
+	var intState [28]int
+	charState := []rune(stringState)
+	for i := 0; i < 7; i++ {
+		for index := range axes {
+			intState[i*4+index] = fromStringMap[string(charState[i*3+index])]
+		}
+		intState[i*4+3] = 3 - (intState[i*4+1] + intState[i*4+2])
+	}
+
+	cube := Cube{
+		state:   intState,
+		indices: [7]Cell{Xa, Ya, Za, Xd, Yd, Zd, Po},
+	}
+
+	return cube
+}
+
+/*func FromString(State string) Cube {
 	intCube := Cube{
 		state:   [28]int{},
 		indices: [7]Cell{Xa, Ya, Za, Xd, Yd, Zd, Po},
@@ -74,7 +92,7 @@ func FromString(State string) Cube {
 	fmt.Println(intCube.state)
 	return intCube
 }
-
+*/
 func RandomCube() Cube {
 
 	cube := SolvedCube()
