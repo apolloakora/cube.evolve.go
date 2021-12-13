@@ -61,6 +61,10 @@ func (c *Cube) reshuffle(move Move, toCell Cell, toValue Cell, firstCell Cell) {
 	c.indices[toCell] = toValue
 }
 
+func (c Cube) Solved() bool {
+	return false
+}
+
 func (c Cube) String() string {
 	var strState = make([]string, 28)
 	for i, v := range c.indices {

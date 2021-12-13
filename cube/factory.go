@@ -22,10 +22,14 @@ func SolvedCube() Cube {
 	return cube
 }
 
-func FromString(cubeSring string) {
-	for i, c := range cubeSring {
-		print(i, c)
-	}
+func FromString(state string) Cube {
+
+	/*	for i, c := range state {
+			print(i, c)
+		}
+	*/
+
+	return SolvedCube()
 }
 
 func RandomCube() Cube {

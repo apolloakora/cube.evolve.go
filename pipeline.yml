@@ -31,7 +31,7 @@ jobs:
             config:
                 platform: linux/arm64
                 image_resource:
-                    type: docker-image
+                    type: registry-image
                     source:
                         repository: ubuntu
                         tag: 20.04
