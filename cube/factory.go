@@ -55,6 +55,7 @@ func FromString(State string) Cube {
 
 	for i, v := range stringSlice {
 		if (i%3 == 0 && i != 0) || i == 20 {
+			fmt.Println("the index right now is", i)
 			intSlice = append(intSlice, 3-(intSlice[i-2]+intSlice[i-1]))
 		}
 

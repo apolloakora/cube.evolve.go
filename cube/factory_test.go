@@ -4,7 +4,7 @@ import "testing"
 
 func TestFromString(t *testing.T) {
 
-	endState := "1xz1zx7yx1xz2xz2xz0xz4yx"
+	endState := "1xz1zx7yx1xz2xz0xz4yx"
 	returnMoves := [...]Move{Xz, Yx, Zy, Yz, Xn}
 	myCube := FromString(endState)
 	for _, v := range returnMoves {
