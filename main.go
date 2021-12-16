@@ -36,18 +36,18 @@ type Person struct {
 }
 
 var People = []Person{
-	Person{Id: 3, Name: "Aaliyah", Address: "40 Inca Drive, London", Age: 12, Worth: 654321},
-	Person{Id: 5, Name: "Apollo", Address: "40 Inca Drive, London", Age: 50, Worth: 7654321},
+	Person{Id: 3, Name: "Iron Maiden", Address: "666 Acacia Avenue, Sydney", Age: 12, Worth: 654321},
+	Person{Id: 5, Name: "Harry Potter", Address: "42 Privet Drive, Cambridge", Age: 50, Worth: 7654321},
 }
 
 func rootUrl(writer http.ResponseWriter, request *http.Request) {
-	fmt.Println("the root (home) url endpoint has been hit")
+	Info.Printf("the root (home) url endpoint has been hit - %s", request)
 	fmt.Fprintf(writer, "This REST API is all about People %s", request.URL.Path[1:])
 }
 
-func listPeople(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("the list people endpoint has been hit")
-	json.NewEncoder(w).Encode(People)
+func listPeople(writer http.ResponseWriter, request *http.Request) {
+	Info.Printf("the list people endpoint has been hit by request", request)
+	_ = json.NewEncoder(writer).Encode(People)
 }
 
 func returnSinglePerson(writer http.ResponseWriter, request *http.Request) {
@@ -56,28 +56,29 @@ func returnSinglePerson(writer http.ResponseWriter, request *http.Request) {
 	intId, _ := strconv.Atoi(theId)
 	for _, person := range People {
 		if intId == person.Id {
-			json.NewEncoder(writer).Encode(person)
+			_ = json.NewEncoder(writer).Encode(person)
 		}
 	}
 }
 
-func deletePerson(writer http.ResponseWriter, request *http.Request) {
+/*func deletePerson(writer http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	theId := vars["id"]
 	intId, _ := strconv.Atoi(theId)
 	for _, person := range People {
 		if intId == person.Id {
-			json.NewEncoder(writer).Encode(person)
+			_ = json.NewEncoder(writer).Encode(person)
 		}
 	}
 }
+*/
 
 func createNewPerson(writer http.ResponseWriter, request *http.Request) {
 	reqBody, _ := ioutil.ReadAll(request.Body)
 	var person Person
-	json.Unmarshal(reqBody, &person)
+	_ = json.Unmarshal(reqBody, &person)
 	People = append(People, person)
-	json.NewEncoder(writer).Encode(person)
+	_ = json.NewEncoder(writer).Encode(person)
 }
 
 func main() {
@@ -88,7 +89,8 @@ func main() {
 	Info.Printf("The random cube state is %s", randomCube)
 	randomCube.Revolve(cube.Xy)
 	Warning.Printf("Warning is that after the %s move the state is %s", cube.Xy, randomCube)
-	Error.Println("Did the previous move fail? Can we add params to a Println function?")
+	Info.Println("Person ID is %s and name is %s and address is %s", People[0].Id, People[0].Name, People[0].Address)
+	Error.Println("If an error occurs use this method.")
 
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/", rootUrl)
