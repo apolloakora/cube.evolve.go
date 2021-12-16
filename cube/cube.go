@@ -10,7 +10,7 @@ type Cube struct {
 	indices [7]Cell
 }
 
-func (c *Cube) revolve(move Move) {
+func (c *Cube) Revolve(move Move) {
 	c.relocate(move)
 	c.reorient(move)
 	c.reorder(move)

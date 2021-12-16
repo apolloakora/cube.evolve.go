@@ -1,14 +1,31 @@
 package main
 
 import (
+	"cube.evolve.go/cube"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 )
+
+var (
+	Trace   *log.Logger
+	Info    *log.Logger
+	Warning *log.Logger
+	Error   *log.Logger
+)
+
+func Init(traceHandle io.Writer, infoHandle io.Writer, warningHandle io.Writer, errorHandle io.Writer) {
+	Trace = log.New(traceHandle, "TRACE: ", log.Ldate|log.Ltime|log.Lshortfile)
+	Info = log.New(infoHandle, "INFO: ", log.Ldate|log.Ltime|log.Lshortfile)
+	Warning = log.New(warningHandle, "WARNING: ", log.Ldate|log.Ltime|log.Lshortfile)
+	Error = log.New(errorHandle, "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile)
+}
 
 type Person struct {
 	Id      int     `json:"id"`
@@ -64,6 +81,14 @@ func createNewPerson(writer http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
+	Init(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
+
+	Trace.Println("I have something standard to say")
+	randomCube := cube.RandomCube()
+	Info.Printf("The random cube state is %s", randomCube)
+	randomCube.Revolve(cube.Xy)
+	Warning.Printf("Warning is that after the %s move the state is %s", cube.Xy, randomCube)
+	Error.Println("Did the previous move fail? Can we add params to a Println function?")
 
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/", rootUrl)

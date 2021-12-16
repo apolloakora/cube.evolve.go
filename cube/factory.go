@@ -60,7 +60,7 @@ func RandomCube() Cube {
 	rand.Seed(time.Now().UnixNano())
 	moveSequence, _ := RandomMoves(minimumMoves + rand.Intn(extraMoveRange))
 	for _, v := range moveSequence {
-		cube.revolve(v)
+		cube.Revolve(v)
 	}
 	return cube
 

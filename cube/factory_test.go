@@ -15,11 +15,11 @@ func TestFromString(t *testing.T) {
 	forwards, backwards := RandomMoves(123456)
 	thisCube := SolvedCube()
 	for _, move := range forwards {
-		thisCube.revolve(move)
+		thisCube.Revolve(move)
 	}
 	thatCube := FromString(thisCube.String())
 	for _, move := range backwards {
-		thatCube.revolve(move)
+		thatCube.Revolve(move)
 	}
 	if !thatCube.Solved() {
 		t.Error("Expected thatCube to be solved but it was", thatCube)
