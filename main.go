@@ -82,6 +82,7 @@ func createNewPerson(writer http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
+	// @todo put the log initializer in a true INIT function - you do not call this every time you get a web request
 	Init(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
 
 	Trace.Println("I have something standard to say")

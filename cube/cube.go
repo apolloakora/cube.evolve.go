@@ -73,7 +73,7 @@ func (c Cube) Solved() bool {
 func (c Cube) String() string {
 	var strState = make([]string, 28)
 	for i, v := range c.indices {
-		strState[i*4] = strconv.Itoa(c.state[v*4])
+		strState[i*4+0] = strconv.Itoa(c.state[v*4])
 		strState[i*4+1] = axes[c.state[int(v)*4+1]]
 		strState[i*4+2] = axes[c.state[int(v)*4+2]]
 	}
