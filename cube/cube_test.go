@@ -45,7 +45,7 @@ func TestRevolutionsFromSolved(t *testing.T) {
 func TestRevolutionsFromRandom(t *testing.T) {
 
 	c := RandomCube()
-	forward, back := RandomMoves(234567)
+	forward, back := RandomMoves(123456)
 	initial := c.String()
 	for _, v := range forward {
 		c.Revolve(v)
@@ -60,7 +60,7 @@ func TestRevolutionsFromRandom(t *testing.T) {
 
 func TestRotations(t *testing.T) {
 
-	for i := range axes {
+	for i := 0; i < 3; i++ {
 
 		c1 := SolvedCube()
 		c2 := SolvedCube()

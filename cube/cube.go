@@ -1,13 +1,8 @@
 package cube
 
-import (
-	"strconv"
-	"strings"
-)
-
 type Cube struct {
-	state   [28]int
-	indices [7]Cell
+	state   *[28]int
+	indices *[7]Cell
 }
 
 func (c *Cube) Revolve(move Move) {
@@ -17,10 +12,10 @@ func (c *Cube) Revolve(move Move) {
 }
 
 func (c *Cube) relocate(move Move) {
+
 	for d := range relocations[move] {
 		translation := directions[move][d]
-		operand := operands[translation]
-		result := c.state[c.indices[d]*4] & operand
+		result := c.state[c.indices[d]*4] & operands[translation]
 		modifier := resultActions[translation][result]
 		c.state[c.indices[d]*4] = c.state[c.indices[d]*4] + modifier
 	}
@@ -61,7 +56,7 @@ func (c *Cube) reshuffle(move Move, toCell Cell, toValue Cell, firstCell Cell) {
 	c.indices[toCell] = toValue
 }
 
-func (c Cube) Solved() bool {
+func (c *Cube) Solved() bool {
 	for _, v := range c.indices {
 		if c.state[v*4] != 0 || c.state[v*4+1] != 0 || c.state[v*4+2] != 1 || c.state[v*4+3] != 2 {
 			return false
@@ -70,12 +65,13 @@ func (c Cube) Solved() bool {
 	return true
 }
 
-func (c Cube) String() string {
-	var strState = make([]string, 28)
+func (c *Cube) String() string {
+
+	byteSeq := make([]byte, 21, 21)
 	for i, v := range c.indices {
-		strState[i*4+0] = strconv.Itoa(c.state[v*4])
-		strState[i*4+1] = axes[c.state[int(v)*4+1]]
-		strState[i*4+2] = axes[c.state[int(v)*4+2]]
+		byteSeq[i*3+0] = byte(ascii0 + c.state[v*4+0])
+		byteSeq[i*3+1] = byte(asciiX + c.state[v*4+1])
+		byteSeq[i*3+2] = byte(asciiX + c.state[v*4+2])
 	}
-	return strings.Join(strState, "")
+	return string(byteSeq)
 }
