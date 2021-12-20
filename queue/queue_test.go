@@ -1,4 +1,4 @@
-package tree
+package queue
 
 import (
 	"fmt"

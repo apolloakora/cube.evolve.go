@@ -1,4 +1,4 @@
-package tree
+package queue
 
 import "fmt"
 
@@ -65,7 +65,7 @@ func (q *Queue) read() *Item {
 	return q.row[0]
 }
 
-// Seek performs a tree-wide breadth-first search
+// Seek performs a queue-wide breadth-first search
 // queue as done effectively removing it.
 func (q *Queue) Seek() *Item {
 	for len(q.row) > 0 {
