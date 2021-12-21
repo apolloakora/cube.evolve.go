@@ -1,7 +1,7 @@
 package cube
 
 type Cell int
-type Direction int
+type direction int
 
 // These relocations for each move are maps with
 // the keys that are the source index of the moving cell
@@ -19,7 +19,7 @@ var relocations = map[Move]map[Cell]Cell{
 	Zn: {Za: Po, Po: Za, Yd: Xd, Xd: Yd},
 }
 
-var directions = map[Move]map[Cell]Direction{
+var directions = map[Move]map[Cell]direction{
 
 	Xy: {Xa: ZOnly, Yd: YOnly, Po: ZOnly, Zd: YOnly},
 	Xz: {Xa: YOnly, Zd: ZOnly, Po: YOnly, Yd: ZOnly},
@@ -32,7 +32,7 @@ var directions = map[Move]map[Cell]Direction{
 	Zn: {Za: XAndY, Po: XAndY, Yd: XAndY, Xd: XAndY},
 }
 
-var operands = map[Direction]int{
+var operands = map[direction]int{
 	ZOnly: 1,
 	YOnly: 2,
 	XOnly: 4,
@@ -41,7 +41,7 @@ var operands = map[Direction]int{
 	XAndZ: 5,
 }
 
-var resultActions = map[Direction]map[int]int{
+var resultActions = map[direction]map[int]int{
 	ZOnly: {0: 1, 1: -1},
 	YOnly: {0: 2, 2: -2},
 	XOnly: {0: 4, 4: -4},
@@ -61,7 +61,7 @@ const (
 )
 
 const (
-	XAndY Direction = iota
+	XAndY direction = iota
 	XAndZ
 	XOnly
 	YAndX

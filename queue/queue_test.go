@@ -5,16 +5,15 @@ import (
 	"testing"
 )
 
-type MyFolder struct {
+type folder struct {
 	name    string
-	folders []*MyFolder
+	folders []*folder
 	files   []string
 }
 
 const target = "Lake Albert"
 
-// @todo reduce the visibility of this function
-func (f MyFolder) Search() ([]*Item, bool, *Item) {
+func (f folder) Search() ([]*Item, bool, *Item) {
 	for _, lake := range f.files {
 		fmt.Println("Searching to see if lake", lake, "matches the target", target)
 		if lake == target {
@@ -30,66 +29,66 @@ func (f MyFolder) Search() ([]*Item, bool, *Item) {
 	return itemPointers, false, nil
 }
 
-func (f MyFolder) String() string {
+func (f folder) String() string {
 	return f.name
 }
 
-var uganda = MyFolder{
+var uganda = folder{
 	name:  "uganda",
 	files: []string{"Lake Albert", "Lake Kyoga"},
 }
 
-var kenya = MyFolder{
+var kenya = folder{
 	name:  "kenya",
 	files: []string{"Lake Naivasha", "Lake Nakuru", "Lake Turkana"},
 }
 
-var tanzania = MyFolder{
+var tanzania = folder{
 	name:  "tanzania",
 	files: []string{"Lake Rukwa"},
 }
 
-var malawi = MyFolder{
+var malawi = folder{
 	name:  "malawi",
 	files: []string{"Lake Malawi"},
 }
 
-var eastAfrica = MyFolder{
+var eastAfrica = folder{
 	name:    "east africa",
-	folders: []*MyFolder{&uganda, &kenya, &tanzania},
+	folders: []*folder{&uganda, &kenya, &tanzania},
 	files:   []string{"Lake Victoria", "Lake Tanganyika"},
 }
 
-var africa = MyFolder{
+var africa = folder{
 	name:    "africa",
-	folders: []*MyFolder{&eastAfrica, &malawi},
+	folders: []*folder{&eastAfrica, &malawi},
 	files:   []string{"Lake Edward", "Lake Chad", "Superior"},
 }
 
-var canada = MyFolder{
+var canada = folder{
 	name:  "canada",
 	files: []string{"Winnipeg", "Reindeer Lake", "Great Bear Lake"},
 }
 
-var america = MyFolder{
+var america = folder{
 	name:  "america",
 	files: []string{"Michigan", "Huron"},
 }
 
-var northAmerica = MyFolder{
+var northAmerica = folder{
 	name:    "north america",
-	folders: []*MyFolder{&canada, &america},
+	folders: []*folder{&canada, &america},
 	files:   []string{"Ontario", "Erie", "Lake of the Woods", "Superior"},
 }
 
-var asia = MyFolder{
+var asia = folder{
 	name:  "asia",
 	files: []string{"Caspian Sea"},
 }
 
-var worldLakes = MyFolder{
+var worldLakes = folder{
 	name:    "world lakes",
-	folders: []*MyFolder{&northAmerica, &africa, &asia},
+	folders: []*folder{&northAmerica, &africa, &asia},
 }
 
 func TestNewQueue(t *testing.T) {

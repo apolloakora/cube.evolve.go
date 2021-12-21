@@ -5,6 +5,17 @@ type Cube struct {
 	indices *[7]Cell
 }
 
+func (c *Cube) Mirror() *Cube {
+
+	mirror := Cube{
+		state:   &[28]int{},
+		indices: &[7]Cell{},
+	}
+	copy(mirror.state[:], c.state[:])
+	copy(mirror.indices[:], c.indices[:])
+	return &mirror
+}
+
 func (c *Cube) Revolve(move Move) {
 	c.relocate(move)
 	c.reorient(move)
@@ -23,10 +34,10 @@ func (c *Cube) relocate(move Move) {
 }
 
 func (c *Cube) reorient(move Move) {
-	if !moves[move].isQuarter {
+	if !Moves[move].isQuarter {
 		return
 	}
-	orientation := xyz[moves[move].axis]
+	orientation := AxisMirror[Moves[move].MoveAxis]
 	for d := range relocations[move] {
 		offset := int(c.indices[d])*4 + 1
 		c.state[offset+int(orientation[0])], c.state[offset+int(orientation[1])] =
@@ -35,17 +46,17 @@ func (c *Cube) reorient(move Move) {
 }
 
 func (c *Cube) reorder(move Move) {
-	if moves[move].isQuarter {
+	if Moves[move].isQuarter {
 		c.replace(move)
 		return
 	}
-	quarterTurn := Move(moves[move].axis * 3)
+	quarterTurn := Move(Moves[move].MoveAxis * 3)
 	c.replace(quarterTurn)
 	c.replace(quarterTurn)
 }
 
 func (c *Cube) replace(move Move) {
-	startIndex := int(moves[move].axis)
+	startIndex := int(Moves[move].MoveAxis)
 	c.reshuffle(move, relocations[move][Cell(startIndex)], c.indices[startIndex], Cell(startIndex))
 }
 

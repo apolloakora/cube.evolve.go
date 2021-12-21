@@ -26,10 +26,10 @@ func TestRandomOutboundMoves(t *testing.T) {
 	}
 	for k, v := range outcomes {
 		if v < minimum {
-			t.Error("Expected count of", k, "outbound moves to be at least", minimum, "but it was", v)
+			t.Error("Expected count of", k, "outbound Moves to be at least", minimum, "but it was", v)
 		}
 		if v > maximum {
-			t.Error("Expected count of", k, "outbound moves not to exceed", maximum, "but it was", v)
+			t.Error("Expected count of", k, "outbound Moves not to exceed", maximum, "but it was", v)
 		}
 	}
 	if len(outboundMoves) != quantity {
@@ -49,10 +49,10 @@ func TestRandomInboundMoves(t *testing.T) {
 	}
 	for k, v := range outcomes {
 		if v < minimum {
-			t.Error("Expected count of", k, "inbound moves to be at least", minimum, "but it was", v)
+			t.Error("Expected count of", k, "inbound Moves to be at least", minimum, "but it was", v)
 		}
 		if v > maximum {
-			t.Error("Expected count of", k, "inbound moves not to exceed", maximum, "but it was", v)
+			t.Error("Expected count of", k, "inbound Moves not to exceed", maximum, "but it was", v)
 		}
 	}
 	if len(inboundMoves) != quantity {

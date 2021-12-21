@@ -38,7 +38,7 @@ func TestRevolutionsFromSolved(t *testing.T) {
 		c.Revolve(v)
 	}
 	if c.String() != initial {
-		t.Error("Expected solved state after thousands of moves", initial, "but got", c.String())
+		t.Error("Expected solved state after thousands of Moves", initial, "but got", c.String())
 	}
 }
 
@@ -54,7 +54,7 @@ func TestRevolutionsFromRandom(t *testing.T) {
 		c.Revolve(v)
 	}
 	if c.String() != initial {
-		t.Error("Expected starting state after thousands of moves", initial, "but got", c.String())
+		t.Error("Expected starting state after thousands of Moves", initial, "but got", c.String())
 	}
 }
 
@@ -100,4 +100,21 @@ func TestString(t *testing.T) {
 		return
 	}
 	t.Error("Expected state", expectedState, "but got", c.String())
+}
+
+func TestMirror(t *testing.T) {
+	src := SolvedCube()
+	dst := src.Mirror()
+	if !dst.Solved() {
+		t.Error("Expected destination to be solved", dst, "like the source", src)
+	}
+	dst.Revolve(Xy)
+	if dst.String() == src.String() {
+		t.Error("Expected destination cube", dst, "to differ from source", src)
+	}
+	src.Revolve(Xn)
+	dst.Revolve(Xy)
+	if dst.String() != src.String() {
+		t.Error("Expected destination cube", dst, "to mirror the source", src)
+	}
 }

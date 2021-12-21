@@ -6,7 +6,7 @@ import "fmt"
 // to be placed into the queue. All they need to do is
 // implement a String() identifier method and a Search()
 // method which returns either more items to enqueue and
-// search or a boolean declaration that it has found the
+// Search or a boolean declaration that it has found the
 // Item we are looking for, and the found Item.
 type Item interface {
 	fmt.Stringer
@@ -45,7 +45,6 @@ func (q *Queue) enqueue(its []*Item) {
 		if ok {
 			continue
 		}
-		fmt.Println("Adding item", itemId, "to queue.")
 		q.row = append(q.row, itP)
 		q.column[itemId] = true
 	}
@@ -54,7 +53,6 @@ func (q *Queue) enqueue(its []*Item) {
 // dequeue marks the current item at the head of the
 // queue as done effectively removing it.
 func (q *Queue) dequeue() {
-	fmt.Println("Removing item", (*q.row[0]).String(), "from queue.")
 	delete(q.column, (*q.row[0]).String())
 	q.row = q.row[1:]
 }
@@ -65,7 +63,7 @@ func (q *Queue) read() *Item {
 	return q.row[0]
 }
 
-// Seek performs a queue-wide breadth-first search
+// Seek performs a queue-wide breadth-first Search
 // queue as done effectively removing it.
 func (q *Queue) Seek() *Item {
 	for len(q.row) > 0 {

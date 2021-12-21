@@ -8,8 +8,10 @@ const (
 	Z
 )
 
-var xyz = map[Axis][2]Axis{
+var AxisMirror = map[Axis][]Axis{
 	X: {Y, Z},
 	Y: {X, Z},
 	Z: {X, Y},
 }
+
+var Axes = []Axis{X, Y, Z}
