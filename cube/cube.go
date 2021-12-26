@@ -30,7 +30,6 @@ func (c *Cube) relocate(move Move) {
 		modifier := resultActions[translation][result]
 		c.state[c.indices[d]*4] = c.state[c.indices[d]*4] + modifier
 	}
-
 }
 
 func (c *Cube) reorient(move Move) {

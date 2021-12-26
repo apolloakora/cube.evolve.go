@@ -63,6 +63,16 @@ var Moves = [9]Movement{
 	{"Zn", Z, false},
 }
 
+var Walkers = []struct {
+	Routes [3]Move
+	Mirror [3]Move
+	Rewind Move
+}{
+	{[3]Move{Xn, Xy, Xn}, [3]Move{Xn, Xz, Xy}, Xz},
+	{[3]Move{Yn, Yx, Yn}, [3]Move{Yn, Yz, Yx}, Yz},
+	{[3]Move{Zn, Zx, Zn}, [3]Move{Zn, Zy, Zx}, Zy},
+}
+
 // The 3 Y and 3 Z moves are the only meaningful proceeding
 // move possibilities after any of the 3 X axis rotations.
 // Similar rules apply after a Y or Z axis rotation.

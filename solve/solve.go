@@ -10,16 +10,6 @@ type Place struct {
 	path *[]cube.Move
 }
 
-var walkers = []struct {
-	routes [3]cube.Move
-	mirror [3]cube.Move
-	rewind cube.Move
-}{
-	{[3]cube.Move{cube.Xn, cube.Xy, cube.Xn}, [3]cube.Move{cube.Xn, cube.Xz, cube.Xy}, cube.Xz},
-	{[3]cube.Move{cube.Yn, cube.Yx, cube.Yn}, [3]cube.Move{cube.Yn, cube.Yz, cube.Yx}, cube.Yz},
-	{[3]cube.Move{cube.Zn, cube.Zx, cube.Zn}, [3]cube.Move{cube.Zn, cube.Zy, cube.Zx}, cube.Zy},
-}
-
 func (p Place) Search() ([]*queue.Item, bool, *queue.Item) {
 
 	var searchAxes = cube.Axes
@@ -30,13 +20,13 @@ func (p Place) Search() ([]*queue.Item, bool, *queue.Item) {
 
 	var itemPointers []*queue.Item
 	for _, thisAxis := range searchAxes {
-		walker := walkers[thisAxis]
-		for index, nextMove := range walker.routes {
+		walker := cube.Walkers[thisAxis]
+		for index, nextMove := range walker.Routes {
 
 			p.cube.Revolve(nextMove)
 			nextPath := make([]cube.Move, len(*p.path)+1)
 			copy(nextPath, *p.path)
-			nextPath[len(nextPath)-1] = walker.mirror[index]
+			nextPath[len(nextPath)-1] = walker.Mirror[index]
 			nextCube := *p.cube.Mirror()
 			nextPlace := Place{
 				cube: &nextCube,
@@ -48,7 +38,7 @@ func (p Place) Search() ([]*queue.Item, bool, *queue.Item) {
 			}
 			itemPointers = append(itemPointers, &item)
 		}
-		p.cube.Revolve(walker.rewind)
+		p.cube.Revolve(walker.Rewind)
 	}
 	return itemPointers, false, nil
 }

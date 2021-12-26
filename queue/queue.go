@@ -53,7 +53,6 @@ func (q *Queue) enqueue(its []*Item) {
 // dequeue marks the current item at the head of the
 // queue as done effectively removing it.
 func (q *Queue) dequeue() {
-	delete(q.column, (*q.row[0]).String())
 	q.row = q.row[1:]
 }
 
@@ -74,5 +73,6 @@ func (q *Queue) Seek() *Item {
 		q.enqueue(iPointers)
 		q.dequeue()
 	}
-	panic("Queue unexpectedly has not found what it seeks.")
+	fmt.Println("The item search count is", len(q.column))
+	panic("Queue has not found what it seeks.")
 }
