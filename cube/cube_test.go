@@ -1,6 +1,7 @@
 package cube
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -100,6 +101,25 @@ func TestString(t *testing.T) {
 		return
 	}
 	t.Error("Expected state", expectedState, "but got", c.String())
+}
+
+func TestOffsets(t *testing.T) {
+
+	c := SolvedCube()
+	for _, v := range c.Offsets() {
+		if v != 0 {
+			t.Error("Expected zero offeets but got", c.Offsets())
+		}
+	}
+
+	c.Revolve(Xy)
+	c.Revolve(Yz)
+	c.Revolve(Zx)
+
+	expect := []int{2, 1, 5, 2, 2, 4, 2}
+	if !reflect.DeepEqual(c.Offsets(), expect) {
+		t.Error("Expected cube offsets to be", expect, "but they were", c.Offsets())
+	}
 }
 
 func TestMirror(t *testing.T) {

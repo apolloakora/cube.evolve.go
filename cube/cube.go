@@ -75,6 +75,14 @@ func (c *Cube) Solved() bool {
 	return true
 }
 
+func (c *Cube) Offsets() []int {
+	offsets := make([]int, 7)
+	for i, v := range c.indices {
+		offsets[i] = c.state[v*4]
+	}
+	return offsets
+}
+
 // @todo refactor to the new 14 digit string format
 func (c *Cube) String() string {
 
