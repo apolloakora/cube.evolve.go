@@ -75,6 +75,7 @@ func (c *Cube) Solved() bool {
 	return true
 }
 
+// @todo refactor to the new 14 digit string format
 func (c *Cube) String() string {
 
 	byteSeq := make([]byte, 21, 21)
