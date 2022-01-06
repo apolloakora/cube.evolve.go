@@ -83,14 +83,12 @@ func (c *Cube) Offsets() []int {
 	return offsets
 }
 
-// @todo refactor to the new 14 digit string format
 func (c *Cube) String() string {
 
-	byteSeq := make([]byte, 21, 21)
+	byteSeq := make([]byte, 14, 14)
 	for i, v := range c.indices {
-		byteSeq[i*3+0] = byte(ascii0 + c.state[v*4+0])
-		byteSeq[i*3+1] = byte(asciiX + c.state[v*4+1])
-		byteSeq[i*3+2] = byte(asciiX + c.state[v*4+2])
+		byteSeq[i*2+0] = byte(ascii0 + c.state[v*4+0])
+		byteSeq[i*2+1] = byte(asciiX + c.state[v*4+1])
 	}
 	return string(byteSeq)
 }

@@ -22,8 +22,12 @@ func TestSolveFromRandom(t *testing.T) {
 	//	startCube := cube.FromString("0xy0xy0xy0xy0xy0xy0xy")
 	//	startCube := cube.FromString("2zy6yz0xy0xy0xy4zy0xy")
 	//	startCube := cube.FromString("0xy0xy0xy4xz0zx0xy4yx")
+	//	startCube := cube.FromString("0xy1yx0xy4xz0xy4xz1zy")
 
-	startCube := cube.FromString("0xy1yx0xy4xz0xy4xz1zy")
+	//	startCube := cube.FromString("0xy0xy0xy0xy0xy0xy0xy") // SOL\VED CUBE
+	//  startCube := cube.FromString("0yz0yz0yz0xy0xy0xy0xy") // Unsolved adjacent
+
+	startCube := cube.FromString("0x0x0x6z3y5x0x") // Unsolved adjacent
 	firstPlace := Place{
 		cube: &startCube,
 		path: &[]cube.Move{},
@@ -38,7 +42,7 @@ func TestSolveFromRandom(t *testing.T) {
 
 // @todo switch this test back on
 func offTestSolveKnownCube(t *testing.T) {
-	knownCube := cube.FromString("0zx5zx2yx1xz0yz0yz6zx")
+	knownCube := cube.FromString("0z5z2y1x0y0y6z")
 	knownSolution := []cube.Move{cube.Yx, cube.Xz, cube.Yn, cube.Zy, cube.Yx, cube.Zx, cube.Yx, cube.Xn, cube.Zx}
 	firstPlace := Place{
 		cube: &knownCube,

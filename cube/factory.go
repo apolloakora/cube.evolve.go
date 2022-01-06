@@ -17,6 +17,8 @@ func SolvedCube() Cube {
 
 const ascii0, asciiX = 48, 120
 
+var hopper = [...]int{1, 2, 2, 1, 2, 1, 1, 2}
+
 func FromString(in string) Cube {
 
 	cube := Cube{
@@ -25,9 +27,9 @@ func FromString(in string) Cube {
 	}
 	byteStr := []byte(in)
 	for i := range cube.indices {
-		cube.state[i*4+0] = int(byteStr[i*3+0]) - ascii0
-		cube.state[i*4+1] = int(byteStr[i*3+1]) - asciiX
-		cube.state[i*4+2] = int(byteStr[i*3+2]) - asciiX
+		cube.state[i*4+0] = int(byteStr[i*2+0]) - ascii0
+		cube.state[i*4+1] = int(byteStr[i*2+1]) - asciiX
+		cube.state[i*4+2] = (cube.state[i*4+1] + hopper[cube.state[i*4+0]]) % 3
 		cube.state[i*4+3] = 3 - (cube.state[i*4+1] + cube.state[i*4+2])
 	}
 	return cube
