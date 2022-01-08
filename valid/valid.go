@@ -38,3 +38,28 @@ func CheckValid(c cube.Cube) bool {
 	}
 	return true
 }
+
+var mySlice = []int{4, 2, 1, 3, 5, 6, 7}
+
+func CentreOfGravity(c cube.Cube) bool {
+	offsets := c.Offsets()
+	for i, v := range offsets {
+		if mySlice[i] == v {
+			return false
+		}
+	}
+	return true
+}
+
+func SamePosition(c cube.Cube) bool {
+	offsets := c.Offsets()
+	tookPlaces := make([]bool, 7)
+	for i, v := range offsets {
+		xorValue := (mySlice[i] ^ v) - 1
+		if tookPlaces[xorValue] {
+			return false
+		}
+		tookPlaces[xorValue] = true
+	}
+	return true
+}
