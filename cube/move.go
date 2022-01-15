@@ -82,6 +82,20 @@ var next = map[Axis][6]Move{
 	Z: {Xy, Xz, Xn, Yx, Yz, Yn},
 }
 
+var reorient = map[Axis]map[Axis]map[uint8]Axis{
+	Y: {
+		X: {1: Y, 2: Y, 4: Y, 7: Y, 0: Z, 3: Z, 5: Z, 6: Z},
+		Y: {1: Z, 2: Z, 4: Z, 7: Z, 0: X, 3: X, 5: X, 6: X},
+		Z: {1: X, 2: X, 4: X, 7: X, 0: Y, 3: Y, 5: Y, 6: Y},
+	},
+
+	Z: {
+		X: {1: Z, 2: Z, 4: Z, 7: Z, 0: Y, 3: Y, 5: Y, 6: Y},
+		Y: {1: X, 2: X, 4: X, 7: X, 0: Z, 3: Z, 5: Z, 6: Z},
+		Z: {1: Y, 2: Y, 4: Y, 7: Y, 0: X, 3: X, 5: X, 6: X},
+	},
+}
+
 const (
 	Xy Move = iota
 	Xz
