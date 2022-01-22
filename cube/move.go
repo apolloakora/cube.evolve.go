@@ -73,9 +73,9 @@ var Walkers = []struct {
 	{[3]Move{Zn, Zx, Zn}, [3]Move{Zn, Zy, Zx}, Zy},
 }
 
-// The 3 Y and 3 Z moves are the only meaningful proceeding
-// move possibilities after any of the 3 X axis rotations.
-// Similar rules apply after a Y or Z axis rotation.
+// If the previous move was X based the next move can only
+// be Y or Z based. A similar symmetrical rule applies after
+// a Y or Z rotation.
 var next = map[Axis][6]Move{
 	X: {Yx, Yz, Yn, Zx, Zy, Zn},
 	Y: {Xy, Xz, Xn, Zx, Zy, Zn},

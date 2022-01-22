@@ -76,3 +76,13 @@ func (q *Queue) Seek() *Item {
 	fmt.Println("The item search count is", len(q.column))
 	panic("Queue has not found what it seeks.")
 }
+
+// Results will get all the queue results as a map
+func (q *Queue) Results() map[string]bool {
+	for len(q.row) > 0 {
+		iPointers, _, _ := (*q.read()).Search()
+		q.enqueue(iPointers)
+		q.dequeue()
+	}
+	return q.column
+}

@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestSolveFromRandom(t *testing.T) {
+func testSolveFromRandom(t *testing.T) {
 	//toSolveCube := cube.FromString("0zx5zx2yx1xz0yz0yz6zx" )
 	// solution is Yx Xz Yn Zy Yx Zx Yx Xn Zx
 	//	toSolveCube := cube.FromString("7zy3yz5zx4yx7xz0xy2zy")
@@ -27,7 +27,7 @@ func TestSolveFromRandom(t *testing.T) {
 	//	startCube := cube.FromString("0xy0xy0xy0xy0xy0xy0xy") // SOL\VED CUBE
 	//  startCube := cube.FromString("0yz0yz0yz0xy0xy0xy0xy") // Unsolved adjacent
 
-	startCube := cube.FromString("0x0x0x6z3y5x0x") // Unsolved adjacent
+	startCube := cube.FromString("0x4z0x1y0x5z0x")
 	firstPlace := Place{
 		cube: &startCube,
 		path: &[]cube.Move{},
@@ -40,9 +40,22 @@ func TestSolveFromRandom(t *testing.T) {
 	fmt.Println("Solution Path has", len(*solution.path), "moves", *solution.path)
 }
 
+func TestGetResults(t *testing.T) {
+	startCube := cube.FromString("0y0y0y0y0y0y0y")
+	firstPlace := Place{
+		cube: &startCube,
+		path: &[]cube.Move{},
+	}
+	fmt.Println("The starting cube id", startCube.String())
+	var queueItem queue.Item = firstPlace
+	ourQueue := queue.NewQueue(&queueItem)
+	theResults := ourQueue.Results()
+	fmt.Println("The length of the map is", len(theResults))
+}
+
 // @todo switch this test back on
 func offTestSolveKnownCube(t *testing.T) {
-	knownCube := cube.FromString("0z5z2y1x0y0y6z")
+	knownCube := cube.FromString("0z5z2x1x0y0y6z") // LOOK BACK IN GITHUB FOR CORRECT STRING - lost when moving to 14 characters
 	knownSolution := []cube.Move{cube.Yx, cube.Xz, cube.Yn, cube.Zy, cube.Yx, cube.Zx, cube.Yx, cube.Xn, cube.Zx}
 	firstPlace := Place{
 		cube: &knownCube,

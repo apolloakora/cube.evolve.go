@@ -46,3 +46,15 @@ func (p Place) Search() ([]*queue.Item, bool, *queue.Item) {
 func (p Place) String() string {
 	return p.cube.String()
 }
+
+// States will return all the valid cube states
+func States() map[string]bool {
+	startCube := cube.FromString("0y0y0y0y0y0y0y")
+	firstPlace := Place{
+		cube: &startCube,
+		path: &[]cube.Move{},
+	}
+	var queueItem queue.Item = firstPlace
+	ourQueue := queue.NewQueue(&queueItem)
+	return ourQueue.Results()
+}
